@@ -1,1 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
+@use "tailwindcss";
+@theme {
+  --color-gray-light: #f6f6f6;
+  --color-blue-light: #F8FBFF;
+
+  --color-app-50: var(--color-sky-50);
+  --color-app-100: var(--color-sky-100);
+  --color-app-200: var(--color-sky-200);
+  --color-app-300: var(--color-sky-300);
+  --color-app-400: var(--color-sky-400);
+  --color-app-500: var(--color-sky-500);
+  --color-app-600: var(--color-sky-600);
+  --color-app-700: var(--color-sky-700);
+  --color-app-800: var(--color-sky-800);
+  --color-app-900: var(--color-sky-900);
+  --color-app-950: var(--color-sky-950);
+
+  /* Spacing */
+  --spacing-34: 8.5rem;
+
+  /* Font Families */
+  --font-barlow: 'Barlow Font', serif;
+  --font-barlow-bold: 'Barlow Bold', sans-serif;
+
+  /* Animations */
+  --animation-slide-right: slideRight 300ms ease-out;
+  --animation-slide-up-fade-out: slideUpFadeOut 300ms ease-out 1300ms;
+  --animation-slide-up: slideUp 300ms ease-out;
+  --animation-slide-down: slideDown 500ms ease-out;
+  --animation-slide-up-fade-in: slideUpFadeIn 400ms ease-out;
+
+  /* Keyframes */
+  @keyframes slideRight {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(0); }
+  }
+  @keyframes slideDown {
+    0% { transform: translateY(-100%); }
+    55% { transform: translateY(30%); }
+    100% { transform: translateY(0); }
+  }
+  @keyframes slideUp {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(0); }
+  }
+  @keyframes slideUpFadeIn {
+    0% { transform: translateY(20%); opacity: 0.8; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  @keyframes slideUpFadeOut {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100%); opacity: 0; }
+  }
+
+  /* Screens */
+  --screen-xlg-min: 1200px;
+  --screen-xlg-max: 1400px;
+  --screen-dxl-min: 1400px;
+  --screen-dxl-max: 1510px;
+  --screen-mobile-min: 250px;
+  --screen-mobile-max: 1000px;
+}

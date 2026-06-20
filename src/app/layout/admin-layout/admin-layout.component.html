@@ -1,0 +1,15 @@
+<div class="flex min-h-screen">
+  <app-sidebar/>
+  <div class="flex-1">
+    <main class="h-screen bg-gray-light">
+      <app-header/>
+      <app-page-header/>
+      <div
+        class="pt-4 transition-all duration-300 ease-in-out px-4 relative top-0"
+      >
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+</div>
+
