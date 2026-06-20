@@ -7,8 +7,20 @@ import {ForbiddenComponent} from './forbidden/forbidden.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {RealmRoleEnum} from './utils/RealmRoleEnum';
 import {AdminLayoutComponent} from './layout/admin-layout/admin-layout.component';
+import {LandingLayoutComponent} from './layout/landing-layout/landing-layout.component';
+import {LandingPage} from './pages/landing-page/landing-page';
 
 export const routes: Routes = [
+  {
+    path: '',
+    component: LandingLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: LandingPage
+      },
+    ]
+  },
   {
     path: '',
     component: AdminLayoutComponent,

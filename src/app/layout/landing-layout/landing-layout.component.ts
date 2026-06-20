@@ -8,10 +8,6 @@ import {RouterOutlet} from '@angular/router';
   selector: 'app-landing-layout',
   standalone: true,
   templateUrl: './landing-layout.component.html',
-  imports: [
-    NgClass,
-    RouterOutlet
-  ],
   styleUrl: './landing-layout.component.css'
 })
 export class LandingLayoutComponent implements AfterViewInit {

@@ -1,82 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CloudFlow - Streamline Your Workflow</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HelixCare HMS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .card {
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+  </style>
 </head>
-<body class="bg-gray-light text-gray-800">
-<!-- Navigation -->
-<nav #menu class="fixed top-0 w-full z-50 glass-effect shadow-sm">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center py-4">
-      <div class="flex items-center gap-2">
-        <img alt="Logo"
-             ngSrc="assets/mx-logo.png"
-             width="100"
-             height="400"
-             class="h-10 w-auto" />
-        <span class="text-xl font-bold pt-1" [ngClass]="menuTextColor">MX SERVICE</span>
-      </div>
-      <div id="header-menu" class="hidden md:flex space-x-8" [ngClass]="menuTextColor">
-        <a href="" class="transition-colors">Home</a>
-        <a href="#features" class="transition-colors">Features</a>
-        <a href="#pricing" class="transition-colors">Pricing</a>
-        <a href="#about" class="transition-colors">About</a>
-        <a href="#contact" class="transition-colors">Contact</a>
-      </div>
-      <div class="flex space-x-4">
-        <button (click)="login()" class="cursor-pointer text-white hover:text-sky-200 transition-colors">Sign In</button>
-        <button routerLink="/get-started" class="cursor-pointer bg-white text-sky-600 px-4 py-2 rounded-lg font-medium hover:bg-sky-50 transition-colors">Get Started</button>
-      </div>
-    </div>
-  </div>
-</nav>
 
-<div class="h-screen">
-  <router-outlet></router-outlet>
-</div>
+<body class="bg-white text-gray-900 font-sans">
 
-<!-- Footer -->
-<footer class="bg-gray-900 text-white py-12">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid md:grid-cols-4 gap-8">
-      <div>
-        <div class="flex items-center mb-4">
-          <div class="w-8 h-8 bg-gradient-to-r from-sky-500 to-blue-500 rounded-lg mr-3"></div>
-          <span class="text-xl font-bold">MX SERVICE</span>
-        </div>
-        <p class="text-gray-400">Streamline your workflow with powerful automation tools.</p>
-      </div>
-      <div>
-        <h4 class="font-semibold mb-4">Product</h4>
-        <ul class="space-y-2 text-gray-400">
-          <li><a href="#" class="hover:text-white transition-colors">Features</a></li>
-          <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
-          <li><a href="#" class="hover:text-white transition-colors">Integrations</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold mb-4">Company</h4>
-        <ul class="space-y-2 text-gray-400">
-          <li><a href="#" class="hover:text-white transition-colors">About</a></li>
-          <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
-          <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold mb-4">Support</h4>
-        <ul class="space-y-2 text-gray-400">
-          <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
-          <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
-          <li><a href="#" class="hover:text-white transition-colors">Status</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-      <p>&copy; 2025 CloudFlow. All rights reserved.</p>
-    </div>
+<!-- NAV -->
+<header class="flex justify-between items-center px-12 py-6 border-b">
+  <div class="font-bold text-xl text-blue-600">HelixCare</div>
+
+  <nav class="hidden md:flex gap-8 text-sm text-gray-600">
+    <a class="hover:text-blue-600">Product</a>
+    <a class="hover:text-blue-600">Solutions</a>
+    <a class="hover:text-blue-600">Security</a>
+    <a class="hover:text-blue-600">Pricing</a>
+  </nav>
+
+  <button class="px-5 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-500">
+    Request Demo
+  </button>
+</header>
+
+<!-- HERO -->
+<section class="max-w-5xl mx-auto px-6 py-20 text-center">
+
+  <h1 class="text-5xl font-bold leading-tight tracking-tight">
+    Hospital Management, Simplified and Scaled
+  </h1>
+
+  <p class="mt-6 text-gray-600 text-lg max-w-2xl mx-auto">
+    A modern HMS platform that unifies patients, staff, billing, and operations into one secure system.
+  </p>
+
+  <div class="mt-8 flex justify-center gap-4">
+    <button class="px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-500">
+      Get Started
+    </button>
+    <button class="px-6 py-3 border rounded-xl hover:border-blue-600 hover:text-blue-600">
+      View Documentation
+    </button>
   </div>
+
+  <!-- trust line -->
+  <div class="mt-10 text-sm text-gray-500 flex justify-center gap-6 flex-wrap">
+    <span>✓ HIPAA-ready architecture</span>
+    <span>✓ Cloud-native</span>
+    <span>✓ Real-time sync</span>
+  </div>
+
+</section>
+
+<!-- FEATURES GRID -->
+<section class="max-w-6xl mx-auto px-6 py-10">
+
+  <div class="grid md:grid-cols-3 gap-8">
+
+    <div class="p-6 rounded-2xl border card">
+      <div class="text-blue-600 text-2xl">●</div>
+      <h3 class="font-semibold mt-4">Unified Patient Records</h3>
+      <p class="text-gray-600 text-sm mt-2">
+        Single source of truth for all medical histories and updates.
+      </p>
+    </div>
+
+    <div class="p-6 rounded-2xl border card">
+      <div class="text-blue-600 text-2xl">●</div>
+      <h3 class="font-semibold mt-4">Smart Scheduling Engine</h3>
+      <p class="text-gray-600 text-sm mt-2">
+        Automatically resolves conflicts and optimizes doctor availability.
+      </p>
+    </div>
+
+    <div class="p-6 rounded-2xl border card">
+      <div class="text-blue-600 text-2xl">●</div>
+      <h3 class="font-semibold mt-4">Billing & Insurance Sync</h3>
+      <p class="text-gray-600 text-sm mt-2">
+        Fast billing workflows with integrated insurance validation.
+      </p>
+    </div>
+
+    <div class="p-6 rounded-2xl border card">
+      <div class="text-blue-600 text-2xl">●</div>
+      <h3 class="font-semibold mt-4">Role-Based Access</h3>
+      <p class="text-gray-600 text-sm mt-2">
+        Secure permissions for doctors, nurses, admins, and staff.
+      </p>
+    </div>
+
+    <div class="p-6 rounded-2xl border card">
+      <div class="text-blue-600 text-2xl">●</div>
+      <h3 class="font-semibold mt-4">Emergency Tracking</h3>
+      <p class="text-gray-600 text-sm mt-2">
+        Real-time prioritization for critical care situations.
+      </p>
+    </div>
+
+    <div class="p-6 rounded-2xl border card">
+      <div class="text-blue-600 text-2xl">●</div>
+      <h3 class="font-semibold mt-4">Analytics Dashboard</h3>
+      <p class="text-gray-600 text-sm mt-2">
+        Operational insights across departments and performance.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- METRICS STRIP -->
+<section class="border-t border-b bg-gray-50">
+
+  <div class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+
+    <div>
+      <p class="text-3xl font-bold text-blue-600">1.2M+</p>
+      <p class="text-sm text-gray-600">Patients Managed</p>
+    </div>
+
+    <div>
+      <p class="text-3xl font-bold text-blue-600">850+</p>
+      <p class="text-sm text-gray-600">Hospitals</p>
+    </div>
+
+    <div>
+      <p class="text-3xl font-bold text-blue-600">99.98%</p>
+      <p class="text-sm text-gray-600">Uptime</p>
+    </div>
+
+    <div>
+      <p class="text-3xl font-bold text-blue-600">24/7</p>
+      <p class="text-sm text-gray-600">Support</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- VALUE SECTION -->
+<section class="max-w-5xl mx-auto px-6 py-20 text-center">
+
+  <h2 class="text-3xl font-bold">Built for Modern Healthcare Systems</h2>
+
+  <p class="mt-4 text-gray-600">
+    Designed to reduce administrative overload and improve patient outcomes through clean workflows.
+  </p>
+
+</section>
+
+<!-- CTA -->
+<section class="max-w-5xl mx-auto px-6 py-16 text-center">
+
+  <div class="border rounded-2xl p-10 card">
+
+    <h3 class="text-2xl font-bold">Start using HelixCare HMS today</h3>
+
+    <p class="text-gray-600 mt-3">
+      Deploy in minutes. Scale across hospitals without friction.
+    </p>
+
+    <button class="mt-6 px-7 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-500">
+      Request Access
+    </button>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t py-10 text-center text-sm text-gray-500">
+  © 2026 HelixCare HMS. All rights reserved.
 </footer>
+
 </body>
 </html>
