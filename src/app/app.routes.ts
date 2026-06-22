@@ -9,6 +9,7 @@ import {RealmRoleEnum} from './utils/RealmRoleEnum';
 import {AdminLayoutComponent} from './layout/admin-layout/admin-layout.component';
 import {LandingLayoutComponent} from './layout/landing-layout/landing-layout.component';
 import {LandingPage} from './pages/landing-page/landing-page';
+import {SafepayaiComponent} from './pages/safepayai/safepayai.component';
 
 export const routes: Routes = [
   {
@@ -28,6 +29,14 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         component: Dashboard,
+        canActivate: [canActivateAuthRole],
+        data: {
+          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN]
+        }
+      },
+      {
+        path: 'ai',
+        component: SafepayaiComponent,
         canActivate: [canActivateAuthRole],
         data: {
           roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN]

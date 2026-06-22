@@ -1,0 +1,45 @@
+<div class="w-full max-w-2xl h-[80vh] flex flex-col bg-white shadow-xl rounded-2xl overflow-hidden">
+
+  <!-- Chat messages -->
+  <div #scrollContainer class="flex-1 p-4 space-y-3 overflow-y-auto">
+
+    @for (message of allMessages(); track $index) {
+      @if (message.type == "question") {
+        <div class="flex justify-end">
+          <div class="bg-blue-500 text-white px-4 py-2 rounded-2xl max-w-xs">
+            {{ message.message }}
+          </div>
+        </div>
+      } @else {
+        <div class="flex justify-start">
+          <div [innerHTML]="renderMarkdown(message.message)" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-2xl w-full">
+          </div>
+        </div>
+      }
+    }
+
+  </div>
+
+  <!-- Input box -->
+  <div class="p-3 border-t flex gap-2 bg-white">
+
+    <input
+      id="input"
+      type="text"
+      [(ngModel)]="question"
+      placeholder="Type a message..."
+      (keydown.enter)="sendMessage()"
+      autocomplete="off"
+      class="flex-1 border rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+    />
+
+    <button class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-xl" (click)="sendMessage()"
+    (keydown.enter)="sendMessage()">
+      Send
+    </button>
+
+  </div>
+  @if (loading()) {
+    <div class="px-4 py-4">Loading...</div>
+  }
+</div>
