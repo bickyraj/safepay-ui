@@ -8,11 +8,13 @@ import {HttpClient} from '@angular/common/http';
 export class AiService {
 
   private readonly httpClient = inject(HttpClient);
+  private conversationId = crypto.randomUUID();
 
   public ask(question: string): Observable<string> {
     const url = new URL("http://localhost:8083/ask");
     return this.httpClient.post(url.toString(), {
-      question: question
+      question: question,
+      conversationId: this.conversationId,
     }, { responseType: 'text' });
   }
 }
