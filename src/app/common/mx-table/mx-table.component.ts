@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {NgClass, NgForOf, NgIf} from '@angular/common';
 
 export interface PaginationDetails {
   pageNumber: number;
@@ -12,6 +13,9 @@ export interface PaginationDetails {
   selector: 'app-mx-table',
   templateUrl: './mx-table.component.html',
   standalone: true,
+  imports: [
+    NgClass
+  ],
   styleUrl: './mx-table.component.css'
 })
 export class MxTableComponent<T extends { id: number | string }> implements OnChanges {

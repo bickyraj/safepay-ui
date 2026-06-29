@@ -6,7 +6,7 @@ export const provideKeycloakAngular = (): EnvironmentProviders => {
     config: {
       url: 'http://localhost:8082',
       realm: 'safepay',
-      clientId: 'safepay-ui',
+      clientId: 'hms-frontend',
     },
     initOptions: {
       onLoad: 'check-sso',
