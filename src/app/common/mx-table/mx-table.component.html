@@ -1,0 +1,93 @@
+<div class="relative bg-white gray-200 overflow-y-scroll">
+  <div class="relative w-full">
+    <table class="lg:w-full mobile:w-full text-left border-spacing-4">
+      <thead>
+      <tr class="text-gray-500 bg-white">
+        <th class="w-[5%] mobile:w-auto font-light text-sm bg-white sticky top-0">
+          <div class="p-4 border-b border-b-gray-200">Sn</div>
+        </th>
+        <ng-container *ngFor="let column of columns;">
+          <th class="font-light text-sm bg-white sticky top-0 capitalize" *ngIf="column !== 'id'">
+            <div class="p-4 border-b border-b-gray-200">{{column}}</div>
+          </th>
+        </ng-container>
+        <th class="font-light text-sm text-center bg-white sticky top-0">
+          <div class="p-4 border-b border-b-gray-200">Action</div>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of dataList; let i = index; trackBy: trackByItemId" class="border-b border-b-gray-200 text-gray-700 group hover:bg-green-50">
+        <td class="pt-2 p-4 text-sm">{{ i + 1 }}</td>
+        <ng-container *ngFor="let column of columns;">
+          <td class="pt-2 p-4" *ngIf="column !== 'id'">
+            <div
+              class="flex text-sm justify-start capitalize">{{ item[column] }}
+            </div>
+          </td>
+        </ng-container>
+        <td class="pt-2 p-4">
+          <div class="flex justify-end space-x-2">
+            <button
+              class="cursor-pointer px-2 font-medium py-1 text-xs text-app-900 bg-app-50 rounded hover:bg-app-500 hover:text-white transition duration-100">
+              View
+            </button>
+            <button
+              class="cursor-pointer px-2 font-medium py-1 text-xs text-green-900 bg-green-50 rounded hover:bg-green-600 hover:text-white transition duration-100">
+              Edit
+            </button>
+            <button
+              class="cursor-pointer px-2 font-medium py-1 text-xs text-red-900 bg-red-50 rounded hover:bg-red-600 hover:text-white transition duration-100">
+              Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="flex p-4 w-full items-center bg-white gap-1">
+  <button
+    (click)="paginate(paginationDetails.pageNumber - 1)"
+    [disabled]="paginationDetails.pageNumber < 2"
+    class="size-8 px-4 w-auto text-gray-900 hover:bg-gray-300 bg-gray-100 font-medium text-sm rounded"
+    [ngClass]="{ 'cursor-not-allowed opacity-50': paginationDetails.pageNumber < 2, 'cursor-pointer': paginationDetails.pageNumber > 2 }"
+  >
+    Previous
+  </button>
+  <ng-container *ngFor="let page of pages">
+    <button
+      [ngClass]="{
+          'bg-sky-600 text-white': page === paginationDetails.pageNumber,
+          'bg-gray-100 text-gray-900 hover:bg-gray-200': page !== paginationDetails.pageNumber
+        }"
+      class="cursor-pointer size-8 rounded"
+      *ngIf="pageIsNumber(page)" (click)="paginate(page)">
+      {{ page }}
+    </button>
+    <span *ngIf="!pageIsNumber(page)" class="size-7 flex justify-center items-end">...</span>
+  </ng-container>
+  <button
+    (click)="paginate(paginationDetails.pageNumber + 1)"
+    [disabled]="!paginationDetails.hasNext"
+    class="cursor-pointer hover:bg-gray-300 size-8 px-4 w-auto text-gray-900 bg-gray-100 text-sm font-medium rounded"
+    [ngClass]="{ 'cursor-not-allowed opacity-50': !paginationDetails.hasNext, 'cursor-pointer': paginationDetails.hasNext }"
+  >
+    Next
+  </button>
+  <div>
+    <select
+      (change)="onChangePageSize($event)"
+      [value]="paginationDetails.pageSize"
+      class="lg:w-20 xlg:w-20 md:w-20 px-4 py-2 border border-gray-300 font-medium text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-app-500 focus:border-transparent"
+    >
+      <option value="1">1</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+    </select>
+  </div>
+</div>
