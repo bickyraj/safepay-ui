@@ -4,6 +4,7 @@ import {MxTableComponent, PaginationDetails} from "../../common/mx-table/mx-tabl
 import {HospitalModel} from "../../model/HospitalModel";
 import {Observable, of, Subject, takeUntil} from "rxjs";
 import {AsyncPipe} from "@angular/common";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-hospital',
@@ -28,6 +29,7 @@ export class Hospital implements OnInit, OnDestroy {
   });
 
   private destroy$ = new Subject<void>();
+  private readonly router = inject(Router);
 
   ngOnInit(): void {
     this.loadPage(1);
@@ -38,6 +40,12 @@ export class Hospital implements OnInit, OnDestroy {
       this.dataList.set(response.content);
       this.paginationDetails.set(response);
     });
+  }
+
+  public hospitalDetail(id: any): void {
+    if (typeof id === "number") {
+      this.router.navigate(['/hospitals', id]);
+    }
   }
 
   ngOnDestroy(): void {

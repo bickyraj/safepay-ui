@@ -13,6 +13,7 @@ import {SafepayaiComponent} from './pages/safepayai/safepayai.component';
 import {Hospital} from './pages/hospital/hospital';
 import {Doctor} from './pages/doctor/doctor';
 import {User} from './pages/user/user';
+import {HospitalDetail} from './pages/hospital/hospital-detail/hospital-detail';
 
 export const routes: Routes = [
   {
@@ -40,6 +41,14 @@ export const routes: Routes = [
       {
         path: 'hospitals',
         component: Hospital,
+        canActivate: [canActivateAuthRole],
+        data: {
+          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN]
+        }
+      },
+      {
+        path: 'hospitals/:id',
+        component: HospitalDetail,
         canActivate: [canActivateAuthRole],
         data: {
           roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN]

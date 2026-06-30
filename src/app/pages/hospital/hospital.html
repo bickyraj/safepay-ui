@@ -2,6 +2,7 @@
   [columns]="columns"
   [dataList]="dataList()"
   [paginationDetails]="paginationDetails()"
+  (onClickView)="hospitalDetail($event)"
   (pageChange)="loadPage($event)"
 />
 

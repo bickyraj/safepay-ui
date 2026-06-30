@@ -21,6 +21,7 @@ export interface PaginationDetails {
 export class MxTableComponent<T extends { id: number | string }> implements OnChanges {
   @Input() dataList: T[] = [];
   @Output() pageChange = new EventEmitter<number>();
+  @Output() onClickView = new EventEmitter<number>();
   @Input() columns: (keyof Partial<T>)[] = [];
   public pages: (number | string) [] = [];
   private readonly maxPagesToShow = 2;
@@ -49,6 +50,10 @@ export class MxTableComponent<T extends { id: number | string }> implements OnCh
 
   public paginate(page: number): void {
     this.pageChange.emit(page);
+  }
+
+  public view(id: any): void {
+    this.onClickView.emit(id);
   }
 
   public onChangePageSize(event: Event): void {
