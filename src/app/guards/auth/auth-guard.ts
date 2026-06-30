@@ -20,8 +20,8 @@ const authGuard = async (
 
   const hasRequiredRole = (): boolean => {
     console.log(grantedRoles.resourceRoles);
-    if (!grantedRoles.resourceRoles["safepay-ui"]) return false;
-    const roles: string[] = grantedRoles.resourceRoles["safepay-ui"];
+    if (!grantedRoles.resourceRoles["hms-frontend"]) return false;
+    const roles: string[] = grantedRoles.resourceRoles["hms-frontend"];
     return roles.some((role: string) => requiredRoles.includes(role.toUpperCase()));
   }
 
