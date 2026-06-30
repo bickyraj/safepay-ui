@@ -44,7 +44,7 @@ export class Hospital implements OnInit, OnDestroy {
 
   public hospitalDetail(id: any): void {
     if (typeof id === "number") {
-      this.router.navigate(['/hospitals', id]);
+      this.router.navigate(['/hospital', id]);
     }
   }
 

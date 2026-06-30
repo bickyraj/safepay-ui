@@ -11,7 +11,6 @@ import {RouterOutlet} from '@angular/router';
   imports: [
     SidebarComponent,
     HeaderComponent,
-    PageHeaderComponent,
     RouterOutlet
   ],
   styleUrl: './admin-layout.component.css'

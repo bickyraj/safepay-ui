@@ -14,6 +14,7 @@ import {Hospital} from './pages/hospital/hospital';
 import {Doctor} from './pages/doctor/doctor';
 import {User} from './pages/user/user';
 import {HospitalDetail} from './pages/hospital/hospital-detail/hospital-detail';
+import {Staff} from './hospital/staff/staff';
 
 export const routes: Routes = [
   {
@@ -47,8 +48,16 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'hospitals/:id',
+        path: 'hospital/:id',
         component: HospitalDetail,
+        canActivate: [canActivateAuthRole],
+        data: {
+          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN]
+        }
+      },
+      {
+        path: 'hospital/:id/staff',
+        component: Staff,
         canActivate: [canActivateAuthRole],
         data: {
           roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN]
