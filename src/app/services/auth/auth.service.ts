@@ -21,6 +21,9 @@ export class AuthService {
   }
 
   public getBusinessName(): string {
+    if (this.tokenParsed && this.tokenParsed['hospital'] && this._keycloak.hasRealmRole(RealmRoleEnum.HOSPITAL_ADMIN.toLowerCase())) {
+      return this.tokenParsed['hospital'][0].replace("\/", "");
+    }
     return "Business Name";
   }
 }

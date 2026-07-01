@@ -34,6 +34,14 @@ export const routes: Routes = [
     component: HospitalAdminLayout,
     children: [
       {
+        path: '',
+        component: HospitalAdminDashboard,
+        canActivate: [canActivateAuthRole],
+        data: {
+          roles: [FrontendRoleEnum.HOSPITAL_ADMIN]
+        }
+      },
+      {
         path: 'dashboard',
         component: HospitalAdminDashboard,
         canActivate: [canActivateAuthRole],
@@ -54,9 +62,17 @@ export const routes: Routes = [
 
   // Main admin area
   {
-    path: '',
+    path: 'admin',
     component: AdminLayoutComponent,
     children: [
+      {
+        path: '',
+        component: Dashboard,
+        canActivate: [canActivateAuthRole],
+        data: {
+          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN]
+        }
+      },
       {
         path: 'dashboard',
         component: Dashboard,

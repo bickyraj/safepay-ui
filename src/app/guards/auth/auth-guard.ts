@@ -37,7 +37,7 @@ const authGuard = async (
   }
 
   if (roles.includes(FrontendRoleEnum.SUPERADMIN)) {
-    return router.parseUrl('/dashboard');
+    return router.parseUrl('/admin/dashboard');
   } else if (roles.includes(FrontendRoleEnum.HOSPITAL_ADMIN)) {
     return router.parseUrl('/hospital-admin/dashboard');
   }

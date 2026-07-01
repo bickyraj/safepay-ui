@@ -14,9 +14,9 @@
     </div>
 
     <div class="hidden lg:flex lg:items-center lg:flex-1 lg:justify-end gap-x-2">
-      <div class="font-semibold border-[1px] border-green-200 rounded-md flex flex-row items-center text-sm" *kaHasRoles="['user']; checkRealm:true">
-        <span class="bg-green-100 text-green-950 py-1 px-2 text-right">Business</span>
-        <span class="py-1 px-2 text-left">{{businessName}}</span>
+      <div class="font-semibold border-[1px] border-green-200 rounded-md flex flex-row items-center text-sm" *kaHasRoles="['hospital_admin']; checkRealm:true">
+        <span class="bg-green-100 text-green-950 py-1 px-2 text-right">Hospital</span>
+        <span class="py-1 px-2 text-left capitalize">{{businessName}}</span>
       </div>
       <div class="font-medium border-[1px] border-green-200 rounded-md flex flex-row items-center text-sm" *kaHasRoles="['superadmin']; checkRealm:true">
         <span class="bg-green-100 text-green-950 py-1 px-2 text-right">Super Admin</span>
