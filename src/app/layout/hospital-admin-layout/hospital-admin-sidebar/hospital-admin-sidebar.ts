@@ -18,9 +18,9 @@ import {HospitalSidebarMenu} from '../hospital-sidebar-menu/hospital-sidebar-men
 @Component({
   selector: 'app-hospital-admin-sidebar',
   imports: [
-    NgOptimizedImage,
     NgClass,
-    HospitalSidebarMenu
+    HospitalSidebarMenu,
+    NgOptimizedImage
   ],
   templateUrl: './hospital-admin-sidebar.html',
   styleUrl: './hospital-admin-sidebar.scss',
