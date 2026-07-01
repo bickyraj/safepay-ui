@@ -13,12 +13,14 @@ import {StorageService} from '../../../services/storage/storage.service';
 import {GlobalStorage} from '../../../services/storage/GlobalStorage.enum';
 import {isCollapsed, toggleSidebar} from '../../../shared/state/sidebar-toggle.state';
 import {NgClass, NgOptimizedImage} from '@angular/common';
+import {HospitalSidebarMenu} from '../hospital-sidebar-menu/hospital-sidebar-menu';
 
 @Component({
   selector: 'app-hospital-admin-sidebar',
   imports: [
     NgOptimizedImage,
-    NgClass
+    NgClass,
+    HospitalSidebarMenu
   ],
   templateUrl: './hospital-admin-sidebar.html',
   styleUrl: './hospital-admin-sidebar.scss',

@@ -21,9 +21,6 @@ export class AuthService {
   }
 
   public getBusinessName(): string {
-    if (this.tokenParsed && this.tokenParsed['tenant'] && this._keycloak.hasRealmRole(RealmRoleEnum.USER)) {
-      return this.tokenParsed['tenant'][0].replace("\/", "");
-    }
     return "Business Name";
   }
 }
