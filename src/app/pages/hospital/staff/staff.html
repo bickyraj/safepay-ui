@@ -36,18 +36,18 @@
         class="mt-2 w-full border rounded-sm px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500"
         [(ngModel)]="searchText"
         [ngModelOptions]="{standalone: true}"
-        (input)="filterStaff()"
+        (input)="searchText()"
       />
 
       <!-- Dropdown -->
       <div class="mt-2 max-h-40 overflow-y-auto border rounded-sm">
 
-        @for (staff of filteredStaff; track staff.id) {
+        @for (staff of filteredStaff(); track staff.id) {
           <div
             (click)="addStaff(staff)"
             class="p-2 hover:bg-gray-100 cursor-pointer flex justify-between">
 
-            <span>{{ staff.name }}</span>
+            <span>{{ staff.firstName }}</span>
             <span class="text-blue-600 text-sm">Add</span>
           </div>
         }
@@ -61,7 +61,7 @@
           <span
             class="bg-blue-100 text-blue-700 px-3 py-1 rounded-sm text-sm flex items-center gap-2">
 
-              {{ s.name }}
+              {{ s.firstName }}
 
             <button class="cursor-pointer" type="button" (click)="removeStaff(s)">
                 &times;

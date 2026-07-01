@@ -26,4 +26,14 @@ export class HospitalService {
     const url = new URL("http://localhost:8084/api/hospital/" + hospitalId + "/staffs");
     return this.httpClient.get<ApiPaginatedResponseDTO<UserModel>>(url.toString());
   }
+
+  public getAllUsersNotInHospital(hospitalId: number): Observable<ApiResponseDTO<UserModel[]>> {
+    const url = new URL("http://localhost:8084/api/hospital/" + hospitalId + "/staffs/not-in-hospital");
+    return this.httpClient.get<ApiResponseDTO<UserModel[]>>(url.toString());
+  }
+
+  public addUsersToHospital(hospitalId: number, userIds: number[], role: string): Observable<boolean> {
+    const url = new URL("http://localhost:8084/api/hospital/" + hospitalId + "/staffs/add");
+    return this.httpClient.post<boolean>(url.toString(), { userIds, role });
+  }
 }

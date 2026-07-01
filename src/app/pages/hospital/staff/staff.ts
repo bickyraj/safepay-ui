@@ -1,6 +1,5 @@
-import {Component, inject, OnDestroy, OnInit, signal} from '@angular/core';
+import {Component, computed, inject, OnDestroy, OnInit, signal} from '@angular/core';
 import {MxTableComponent, PaginationDetails} from '../../../common/mx-table/mx-table.component';
-import {UserService} from '../../../services/user/user.service';
 import {UserModel} from '../../../model/UserModel';
 import {HospitalService} from '../../../services/hospital/hospital.service';
 import {Subject} from 'rxjs';
@@ -24,7 +23,7 @@ export class Staff implements OnInit, OnDestroy{
   hospitalId: number | null = null;
   public openModal: boolean = false;
   private readonly  hospitalService = inject(HospitalService);
-  public readonly columns: (keyof Partial<UserModel>)[] = ['id', 'name'];
+  public readonly columns: (keyof Partial<UserModel>)[] = ['id', 'firstName'];
   public dataList = signal<UserModel[]>([]);
   public paginationDetails = signal<PaginationDetails>({
     pageNumber: 1,
@@ -38,17 +37,16 @@ export class Staff implements OnInit, OnDestroy{
 
   staffForm: FormGroup;
 
-  searchText = '';
-
-  staffList = [
-    { id: 1, name: 'Dr. John Doe' },
-    { id: 2, name: 'Nurse Sarah Smith' },
-    { id: 3, name: 'Dr. Michael Brown' },
-    { id: 4, name: 'Lab Technician Alex' }
-  ];
-
-  filteredStaff = [...this.staffList];
-  selectedStaff: any[] = [];
+  staffList = signal<UserModel[]>([]);
+  searchText = signal('');
+  filteredStaff = computed(() => {
+    const list = this.staffList() ?? [];
+    const search = this.searchText().toLowerCase();
+    return list.filter(user =>
+      user.firstName?.toLowerCase().includes(search)
+    );
+  });
+  selectedStaff: UserModel[] = [];
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute) {
     this.staffForm = new FormGroup({
@@ -61,8 +59,13 @@ export class Staff implements OnInit, OnDestroy{
       staffIds: this.selectedStaff.map(s => s.id),
       role: this.staffForm.value.role
     };
-
-    console.log('SUBMIT:', payload);
+    this.hospitalService.addUsersToHospital(this.hospitalId!, payload.staffIds, payload.role).subscribe(response => {
+      if (response) {
+        this.loadPage(1);
+        this.initUsersNotInHospital();
+        this.close();
+      }
+    });
   }
 
   close() {
@@ -73,6 +76,20 @@ export class Staff implements OnInit, OnDestroy{
     this.route.paramMap.subscribe(params => {
       this.hospitalId = Number(params.get('id'));
       this.loadPage(1);
+      this.initUsersNotInHospital();
+    });
+  }
+
+  private initUsersNotInHospital() {
+    if (this.hospitalId === null) {
+      return;
+    }
+    this.hospitalService.getAllUsersNotInHospital(this.hospitalId).subscribe(response => {
+      if (!response.data) {
+        this.staffList.set([]);
+        return;
+      }
+      this.staffList.set(response.data);
     });
   }
 
@@ -90,22 +107,14 @@ export class Staff implements OnInit, OnDestroy{
     this.openModal = true;
   }
 
-  filterStaff() {
-    const text = this.searchText.toLowerCase();
-
-    this.filteredStaff = this.staffList.filter(s =>
-      s.name.toLowerCase().includes(text)
-    );
-  }
-
-  addStaff(staff: any) {
+  addStaff(staff: UserModel) {
     const exists = this.selectedStaff.find(s => s.id === staff.id);
     if (!exists) {
       this.selectedStaff.push(staff);
     }
   }
 
-  removeStaff(staff: any) {
+  removeStaff(staff: UserModel) {
     this.selectedStaff = this.selectedStaff.filter(s => s.id !== staff.id);
   }
 
