@@ -61,3 +61,7 @@
   --screen-mobile-min: 250px;
   --screen-mobile-max: 1000px;
 }
+
+button {
+  @apply cursor-pointer
+}
