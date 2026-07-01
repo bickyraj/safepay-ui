@@ -19,7 +19,6 @@ const authGuard = async (
   }
 
   const hasRequiredRole = (): boolean => {
-    console.log(grantedRoles.resourceRoles);
     if (!grantedRoles.resourceRoles["hms-frontend"]) return false;
     const roles: string[] = grantedRoles.resourceRoles["hms-frontend"];
     return roles.some((role: string) => requiredRoles.includes(role.toUpperCase()));
