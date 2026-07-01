@@ -14,7 +14,7 @@ import {Hospital} from './pages/hospital/hospital';
 import {Doctor} from './pages/doctor/doctor';
 import {User} from './pages/user/user';
 import {HospitalDetail} from './pages/hospital/hospital-detail/hospital-detail';
-import {Staff} from './hospital/staff/staff';
+import {Staff} from './pages/hospital/staff/staff';
 
 export const routes: Routes = [
   {
