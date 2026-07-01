@@ -15,6 +15,7 @@ import {Doctor} from './pages/doctor/doctor';
 import {User} from './pages/user/user';
 import {HospitalDetail} from './pages/hospital/hospital-detail/hospital-detail';
 import {Staff} from './pages/hospital/staff/staff';
+import {PatientCase} from './pages/patient-case/patient-case';
 
 export const routes: Routes = [
   {
