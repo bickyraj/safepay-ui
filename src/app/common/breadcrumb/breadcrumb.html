@@ -1,0 +1,47 @@
+<nav aria-label="Breadcrumb" class="mt-2 mb-6">
+  <ol class="flex items-center text-sm">
+
+    @for (bc of breadcrumbService.breadcrumbs; track bc; let last = $last) {
+
+      <li class="flex items-center">
+
+        <!-- Link for all except last -->
+        @if (!last) {
+          <a
+            [routerLink]="bc.url"
+            class="text-gray-500 hover:text-blue-600 transition-colors"
+          >
+            {{ bc.label }}
+          </a>
+
+          <!-- Separator -->
+          <span class="mx-2 text-gray-400">
+            <svg
+              class="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </span>
+        }
+
+        <!-- Last item (active page) -->
+        @if (last) {
+          <span class="font-semibold text-gray-900">
+            {{ bc.label }}
+          </span>
+        }
+
+      </li>
+
+    }
+
+  </ol>
+</nav>

@@ -39,7 +39,8 @@ export const routes: Routes = [
         component: HospitalAdminDashboard,
         canActivate: [canActivateAuthRole],
         data: {
-          roles: [FrontendRoleEnum.HOSPITAL_ADMIN]
+          roles: [FrontendRoleEnum.HOSPITAL_ADMIN],
+          breadcrumb: 'Dashboard'
         }
       },
       {
@@ -47,24 +48,33 @@ export const routes: Routes = [
         component: HospitalAdminDashboard,
         canActivate: [canActivateAuthRole],
         data: {
-          roles: [FrontendRoleEnum.HOSPITAL_ADMIN]
+          roles: [FrontendRoleEnum.HOSPITAL_ADMIN],
+          breadcrumb: 'Dashboard'
         }
       },
       {
         path: 'cases',
-        component: PatientCase,
-        canActivate: [canActivateAuthRole],
-        data: {
-          roles: [FrontendRoleEnum.HOSPITAL_ADMIN]
-        }
-      },
-      {
-        path: 'cases/add',
-        component: CreatePatientCase,
-        canActivate: [canActivateAuthRole],
-        data: {
-          roles: [FrontendRoleEnum.HOSPITAL_ADMIN]
-        }
+        data: { breadcrumb: 'Patient Cases' },
+        children: [
+          {
+            path: '',
+            component: PatientCase,
+            canActivate: [canActivateAuthRole],
+            data: {
+              roles: [FrontendRoleEnum.HOSPITAL_ADMIN],
+              breadcrumb: 'Patient Cases'
+            }
+          },
+          {
+            path: 'add',
+            component: CreatePatientCase,
+            canActivate: [canActivateAuthRole],
+            data: {
+              roles: [FrontendRoleEnum.HOSPITAL_ADMIN],
+              breadcrumb: 'Add Patient Case'
+            }
+          }
+        ]
       }
     ]
   },
@@ -75,19 +85,21 @@ export const routes: Routes = [
     component: AdminLayoutComponent,
     children: [
       {
-        path: '',
-        component: Dashboard,
-        canActivate: [canActivateAuthRole],
-        data: {
-          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN]
-        }
-      },
-      {
         path: 'dashboard',
         component: Dashboard,
         canActivate: [canActivateAuthRole],
         data: {
-          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN]
+          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
+          breadcrumb: 'Dashboard'
+        },
+      },
+      {
+        path: '',
+        component: Dashboard,
+        canActivate: [canActivateAuthRole],
+        data: {
+          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
+          breadcrumb: 'Dashboard'
         }
       },
       {
@@ -95,7 +107,8 @@ export const routes: Routes = [
         component: Hospital,
         canActivate: [canActivateAuthRole],
         data: {
-          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN]
+          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
+          breadcrumb: 'Hospital'
         }
       },
       {
@@ -103,7 +116,8 @@ export const routes: Routes = [
         component: HospitalDetail,
         canActivate: [canActivateAuthRole],
         data: {
-          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN]
+          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
+          breadcrumb: 'Hospital Detail'
         }
       },
       {
@@ -111,7 +125,8 @@ export const routes: Routes = [
         component: Staff,
         canActivate: [canActivateAuthRole],
         data: {
-          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN]
+          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
+          breadcrumb: 'Staff'
         }
       },
       {
@@ -119,7 +134,8 @@ export const routes: Routes = [
         component: Doctor,
         canActivate: [canActivateAuthRole],
         data: {
-          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN]
+          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
+          breadcrumb: 'Doctor'
         }
       },
       {
@@ -127,7 +143,8 @@ export const routes: Routes = [
         component: User,
         canActivate: [canActivateAuthRole],
         data: {
-          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN]
+          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
+          breadcrumb: 'Users'
         }
       },
       {

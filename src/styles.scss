@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @use "tailwindcss";
 @theme {
+  --font-sans: "Inter", sans-serif;
   --color-gray-light: #f6f6f6;
   --color-blue-light: #F8FBFF;
 
@@ -62,6 +63,14 @@
   --screen-mobile-max: 1000px;
 }
 
+body {
+  @apply font-sans text-gray-800 text-sm;
+}
+
 button {
   @apply cursor-pointer
+}
+
+hr {
+  @apply border-gray-200
 }

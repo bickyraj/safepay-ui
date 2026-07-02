@@ -2,7 +2,7 @@ import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import { PatientCaseService } from '../../../services/patient-case/patient-case.service';
 import { DecimalPipe } from '@angular/common';
 import {firstValueFrom} from 'rxjs';
-import {Form, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {Form, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {PatientCaseModel} from '../../../model/PatientCaseModel';
 
@@ -23,14 +23,15 @@ interface CaseFile {
 })
 export class CreatePatientCase implements OnInit {
   private patientCaseService = inject(PatientCaseService);
-
+  private submitted = false;
   caseFiles = signal<CaseFile[]>([]);
+  showFileError = signal<boolean>(false);
   patientCaseForm: FormGroup;
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute) {
     this.patientCaseForm = new FormGroup({
-      patientId: new FormControl(''),
-      name: new FormControl('')
+      patientId: new FormControl<string>('', { nonNullable: true, validators: [Validators.required] }),
+      name: new FormControl<string>('', { nonNullable: true, validators: [Validators.required] })
     });
   }
 
@@ -58,6 +59,18 @@ export class CreatePatientCase implements OnInit {
   }
 
   async onSubmit(): Promise<void> {
+    let showErrors = false;
+    if (this.patientCaseForm.invalid) {
+      this.patientCaseForm.markAllAsTouched();
+      showErrors = true;
+    }
+    if (this.caseFiles().length < 1) {
+      this.showFileError.set(true);
+      showErrors = true;
+    }
+    if (showErrors || this.submitted) return;
+
+    this.submitted = true;
     const patientCaseModel: PatientCaseModel = {
       patientId: this.patientCaseForm.get('patientId')?.value,
       name: this.patientCaseForm.get('name')?.value
@@ -66,5 +79,6 @@ export class CreatePatientCase implements OnInit {
     for (const caseFile of this.caseFiles()) {
       await this.patientCaseService.uploadFileInChunks(caseFile.file, caseId, caseFile.progress);
     }
+
   }
 }
