@@ -17,6 +17,7 @@ import { Staff } from './pages/hospital/staff/staff';
 import { HospitalAdminLayout } from './layout/hospital-admin-layout/hospital-admin-layout';
 import {HospitalAdminDashboard} from './pages/hospital/admin/hospital-admin-dashboard/hospital-admin-dashboard';
 import {PatientCase} from './pages/patient-case/patient-case';
+import {CreatePatientCase} from './pages/patient-case/create-patient-case/create-patient-case';
 
 export const routes: Routes = [
   // Public landing page
@@ -52,6 +53,14 @@ export const routes: Routes = [
       {
         path: 'cases',
         component: PatientCase,
+        canActivate: [canActivateAuthRole],
+        data: {
+          roles: [FrontendRoleEnum.HOSPITAL_ADMIN]
+        }
+      },
+      {
+        path: 'cases/add',
+        component: CreatePatientCase,
         canActivate: [canActivateAuthRole],
         data: {
           roles: [FrontendRoleEnum.HOSPITAL_ADMIN]
