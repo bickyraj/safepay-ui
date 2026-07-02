@@ -1,12 +1,18 @@
 import {inject, Injectable, signal, WritableSignal} from '@angular/core';
-import {firstValueFrom, Subject} from 'rxjs';
+import {firstValueFrom, Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {PatientCaseModel} from '../../model/PatientCaseModel';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PatientCaseService {
   private readonly httpClient = inject(HttpClient);
+
+  public createPatientCase(patientCase: PatientCaseModel): Observable<number> {
+    const url = new URL("http://localhost:8084/api/patient-case/create");
+    return this.httpClient.post<number>(url.toString(), patientCase);
+  }
 
   async uploadFileInChunks(file: File, caseId: number, progress: WritableSignal<number>): Promise<void> {
     // const CHUNK_SIZE = 5 * 1024 * 1024; // 5MB per chunk

@@ -1,6 +1,10 @@
-import { Component, inject, signal, WritableSignal } from '@angular/core';
+import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import { PatientCaseService } from '../../../services/patient-case/patient-case.service';
 import { DecimalPipe } from '@angular/common';
+import {firstValueFrom} from 'rxjs';
+import {Form, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
+import {PatientCaseModel} from '../../../model/PatientCaseModel';
 
 interface CaseFile {
   id: string;
@@ -12,15 +16,26 @@ interface CaseFile {
 
 @Component({
   selector: 'app-create-patient-case',
-  imports: [DecimalPipe],
+  imports: [DecimalPipe, FormsModule, ReactiveFormsModule],
   templateUrl: './create-patient-case.html',
   styleUrl: './create-patient-case.scss',
   standalone: true
 })
-export class CreatePatientCase {
+export class CreatePatientCase implements OnInit {
   private patientCaseService = inject(PatientCaseService);
 
   caseFiles = signal<CaseFile[]>([]);
+  patientCaseForm: FormGroup;
+
+  constructor(private fb: FormBuilder, private route: ActivatedRoute) {
+    this.patientCaseForm = new FormGroup({
+      patientId: new FormControl(''),
+      name: new FormControl('')
+    });
+  }
+
+  ngOnInit() {
+  }
 
   onFilesSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -43,9 +58,11 @@ export class CreatePatientCase {
   }
 
   async onSubmit(): Promise<void> {
-    // const patientCase = await firstValueFrom(this.patientCaseService.create(this.form.value));
-    const caseId = 1; // TODO: replace with patientCase.id once form is wired up
-
+    const patientCaseModel: PatientCaseModel = {
+      patientId: this.patientCaseForm.get('patientId')?.value,
+      name: this.patientCaseForm.get('name')?.value
+    }
+    const caseId = await firstValueFrom(this.patientCaseService.createPatientCase(patientCaseModel));
     for (const caseFile of this.caseFiles()) {
       await this.patientCaseService.uploadFileInChunks(caseFile.file, caseId, caseFile.progress);
     }
