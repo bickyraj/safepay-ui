@@ -12,7 +12,7 @@ import {provideHttpClient, withInterceptors} from '@angular/common/http';
 import {provideKeycloakAngular} from './providers/KeycloakProvider';
 
 const urlCondition = createInterceptorCondition<IncludeBearerTokenCondition>({
-  urlPattern: /^(http:\/\/localhost:8083)(\/.*)?$/i,
+  urlPattern: /^(http:\/\/localhost:8084)(\/.*)?$/i,
   bearerPrefix: 'Bearer'
 });
 
