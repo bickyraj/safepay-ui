@@ -2,12 +2,13 @@ import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import { PatientCaseService } from '../../../services/patient-case/patient-case.service';
 import { DecimalPipe } from '@angular/common';
 import {firstValueFrom} from 'rxjs';
-import {Form, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PatientCaseModel} from '../../../model/PatientCaseModel';
 import {EventService} from '../../../services/event/event.service';
+import {FileCard} from '../../../common/file-card/file-card';
 
-interface CaseFile {
+export interface CaseFile {
   id: string;
   file: File;
   name: string;
@@ -17,7 +18,7 @@ interface CaseFile {
 
 @Component({
   selector: 'app-create-patient-case',
-  imports: [DecimalPipe, FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, FileCard],
   templateUrl: './create-patient-case.html',
   styleUrl: './create-patient-case.scss',
   standalone: true

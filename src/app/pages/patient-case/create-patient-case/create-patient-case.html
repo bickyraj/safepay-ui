@@ -1,3 +1,4 @@
+
 <div class="w-full bg-white p-6 rounded shadow space-y-6">
   <form [formGroup]="patientCaseForm">
     <!-- Patient Details -->
@@ -46,33 +47,15 @@
 
       <!-- File Cards -->
       <div class="space-y-3">
-
-        @for (file of caseFiles(); track file.id) {
-          <!-- File Card 1 -->
-          <div class="flex items-center justify-between bg-white p-4 rounded shadow">
-
-            <div>
-              <p class="font-medium">{{ file.name }}</p>
-              <p class="text-sm text-gray-500">{{ file.size / 1024 | number:'1.0-0' }} KB</p>
-            </div>
-            @if(getSubmittedStatus()) {
-              <div class="w-1/2">
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                  <div class="bg-green-500 h-2 rounded-full" [style.width.%]="file.progress()"></div>
-                </div>
-                <p class="text-xs text-right text-gray-500 mt-1">{{ file.progress() }}%</p>
-              </div>
-            } @else {
-              <button
-                type="button"
-                (click)="removeFile(file.id)"
-                class="text-red-600 font-medium bg-red-50 px-3 py-1.5 text-xs rounded hover:bg-red-100 transition flex items-center gap-1"
-              >
-                Remove
-              </button>
-            }
-          </div>
-        }
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          @for (file of caseFiles(); track file.id) {
+            <app-file-card
+              [showRemoveBtn]="getSubmittedStatus()"
+              [file]="file"
+              (onClickRemove)="removeFile(file.id)"
+            />
+          }
+        </div>
       </div>
     </div>
     @if(showFileError() && caseFiles().length < 1) {
