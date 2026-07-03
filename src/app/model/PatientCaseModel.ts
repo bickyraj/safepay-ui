@@ -1,5 +1,5 @@
-export interface PatientCaseModel {
-  id?: number;
-  patientId: string;
-  name: string;
+export class PatientCaseModel {
+  id!: number;
+  name!: string;
+  patientId!: string;
 }

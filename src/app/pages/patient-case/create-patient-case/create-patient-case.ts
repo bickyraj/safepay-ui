@@ -75,10 +75,10 @@ export class CreatePatientCase {
     if (showErrors || this.submitted) return;
 
     this.submitted = true;
-    const patientCaseModel: PatientCaseModel = {
-      patientId: this.patientCaseForm.get('patientId')?.value,
-      name: this.patientCaseForm.get('name')?.value
-    }
+    const patientCaseModel: PatientCaseModel = new PatientCaseModel();
+    patientCaseModel.patientId = this.patientCaseForm.get('patientId')?.value;
+    patientCaseModel.name = this.patientCaseForm.get('name')?.value;
+
     const caseId = await firstValueFrom(this.patientCaseService.createPatientCase(patientCaseModel));
     for (const caseFile of this.caseFiles()) {
       await this.patientCaseService.uploadFileInChunks(caseFile.file, caseId, caseFile.progress);

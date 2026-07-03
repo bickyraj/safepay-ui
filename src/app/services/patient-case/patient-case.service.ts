@@ -1,7 +1,11 @@
 import {inject, Injectable, signal, WritableSignal} from '@angular/core';
-import {firstValueFrom, Observable, Subject} from 'rxjs';
+import {firstValueFrom, map, Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {PatientCaseModel} from '../../model/PatientCaseModel';
+import {ApiPaginatedResponseDTO} from '../../common/dto/ApiPaginatedResponseDTO';
+import {DoctorModel} from '../../model/DoctorModel';
+import {HospitalModel} from '../../model/HospitalModel';
+import {UserModel} from '../../model/UserModel';
 
 @Injectable({
   providedIn: 'root',
@@ -50,5 +54,16 @@ export class PatientCaseService {
         totalChunks
       })
     );
+  }
+
+  public getList(): Observable<ApiPaginatedResponseDTO<PatientCaseModel>> {
+    const url = new URL("http://localhost:8084/api/patient-case/all");
+    return this.httpClient.get<ApiPaginatedResponseDTO<PatientCaseModel>>(url.toString())
+      .pipe(
+        map(response => ({
+          ...response,
+          content: response.content.map(d => Object.assign(new PatientCaseModel(), d))
+        }))
+      );
   }
 }
