@@ -66,4 +66,15 @@ export class PatientCaseService {
         }))
       );
   }
+
+  public getAllPatientCasesList(): Observable<ApiPaginatedResponseDTO<PatientCaseModel>> {
+    const url = new URL("http://localhost:8084/api/patient-case/all-cases");
+    return this.httpClient.get<ApiPaginatedResponseDTO<PatientCaseModel>>(url.toString())
+      .pipe(
+        map(response => ({
+          ...response,
+          content: response.content.map(d => Object.assign(new PatientCaseModel(), d))
+        }))
+      );
+  }
 }

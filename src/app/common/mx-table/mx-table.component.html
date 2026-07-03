@@ -6,10 +6,10 @@
         <th class="w-[5%] mobile:w-auto font-light text-sm bg-white sticky top-0">
           <div class="p-4 border-b border-b-gray-200">Sn</div>
         </th>
-        @for (column of columns; track column) {
+        @for (column of columns; track column; let i = $index) {
           @if (column !== 'id') {
             <th class="font-light text-sm bg-white sticky top-0 capitalize">
-              <div class="p-4 border-b border-b-gray-200">{{column}}</div>
+              <div class="p-4 border-b border-b-gray-200">{{ columnNames[i]? columnNames[i]: column}}</div>
             </th>
           }
         }
@@ -29,8 +29,8 @@
                 </td>
               }
             }
-            <td class="pt-2 p-4">
-              <div class="flex justify-end space-x-2">
+            <td class="pt-2 p-4 w-32">
+              <div class="flex justify-center space-x-2">
                 <button (click)="view(item.id)" class="cursor-pointer px-2 font-medium py-1 text-xs text-app-900 bg-app-50 rounded hover:bg-app-500 hover:text-white transition duration-100">
                   View
                 </button>

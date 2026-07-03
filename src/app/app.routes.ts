@@ -18,6 +18,7 @@ import { HospitalAdminLayout } from './layout/hospital-admin-layout/hospital-adm
 import {HospitalAdminDashboard} from './pages/hospital/admin/hospital-admin-dashboard/hospital-admin-dashboard';
 import {PatientCase} from './pages/patient-case/patient-case';
 import {CreatePatientCase} from './pages/patient-case/create-patient-case/create-patient-case';
+import {AdminPatientCase} from './pages/admin/patient-case/admin-patient-case.component';
 
 export const routes: Routes = [
   // Public landing page
@@ -100,6 +101,15 @@ export const routes: Routes = [
         data: {
           roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
           breadcrumb: 'Dashboard'
+        }
+      },
+      {
+        path: 'patient-cases',
+        component: AdminPatientCase,
+        canActivate: [canActivateAuthRole],
+        data: {
+          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
+          breadcrumb: 'Patient Cases'
         }
       },
       {

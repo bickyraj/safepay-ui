@@ -23,6 +23,7 @@ export class MxTableComponent<T extends { id: number | string }> implements OnCh
   @Output() pageChange = new EventEmitter<number>();
   @Output() onClickView = new EventEmitter<number>();
   @Input() columns: (keyof Partial<T>)[] = [];
+  @Input() columnNames: string[] = [];
   public pages: (number | string) [] = [];
   private readonly maxPagesToShow = 2;
 

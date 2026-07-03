@@ -39,5 +39,4 @@ export class PatientCase implements OnInit{
       this.paginationDetails.set(response);
     });
   }
-
 }
