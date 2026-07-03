@@ -1,0 +1,40 @@
+@if(showToast()) {
+  <div
+    class="fixed z-50 bottom-[20px] left-6 w-auto max-w-[400px] bg-white border border-gray-200 shadow-2xl rounded-lg overflow-hidden"
+  >
+    <div class="flex items-start gap-3 p-4">
+
+      <!-- Icon -->
+      <div class="flex-shrink-0">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-green-50">
+          <!-- success icon -->
+          <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="flex-1">
+        <p class="text-sm font-semibold text-gray-800">
+          Success
+        </p>
+        <p class="text-sm text-gray-500 mt-0.5">
+          {{ toastMessage }}
+        </p>
+      </div>
+
+      <!-- Close -->
+      <button class="text-gray-400 hover:text-gray-600">
+        ✕
+      </button>
+
+    </div>
+
+    <!-- Progress bar -->
+    <div class="h-1 bg-gray-100">
+      <div class="h-full bg-green-500 w-full animate-pulse"></div>
+    </div>
+  </div>
+}
