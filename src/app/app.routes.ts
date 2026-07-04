@@ -19,6 +19,7 @@ import {HospitalAdminDashboard} from './pages/hospital/admin/hospital-admin-dash
 import {PatientCase} from './pages/patient-case/patient-case';
 import {CreatePatientCase} from './pages/patient-case/create-patient-case/create-patient-case';
 import {AdminPatientCase} from './pages/admin/patient-case/admin-patient-case.component';
+import {AdminPatientCaseDetail} from './pages/admin/patient-case/patient-case-detail/admin-patient-case-detail.component';
 
 export const routes: Routes = [
   // Public landing page
@@ -105,30 +106,51 @@ export const routes: Routes = [
       },
       {
         path: 'patient-cases',
-        component: AdminPatientCase,
-        canActivate: [canActivateAuthRole],
-        data: {
-          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
-          breadcrumb: 'Patient Cases'
-        }
+        data: { breadcrumb: 'Patient Cases' }, // no component here!
+        children: [
+          {
+            path: '',
+            component: AdminPatientCase,
+            canActivate: [canActivateAuthRole],
+            data: {
+              roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
+              breadcrumb: ''
+            }
+          },
+          {
+            path: ':id',
+            component: AdminPatientCaseDetail,
+            canActivate: [canActivateAuthRole],
+            data: {
+              roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
+              breadcrumb: 'Details'
+            }
+          }
+        ]
       },
       {
         path: 'hospitals',
-        component: Hospital,
-        canActivate: [canActivateAuthRole],
-        data: {
-          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
-          breadcrumb: 'Hospital'
-        }
-      },
-      {
-        path: 'hospital/:id',
-        component: HospitalDetail,
-        canActivate: [canActivateAuthRole],
-        data: {
-          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
-          breadcrumb: 'Hospital Detail'
-        }
+        data: { breadcrumb: 'Hospitals' },
+        children: [
+          {
+            path: '',
+            component: Hospital,
+            canActivate: [canActivateAuthRole],
+            data: {
+              roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
+              breadcrumb: ''
+            }
+          },
+          {
+            path: ':id',
+            component: HospitalDetail,
+            canActivate: [canActivateAuthRole],
+            data: {
+              roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
+              breadcrumb: 'Hospital Detail'
+            }
+          }
+        ]
       },
       {
         path: 'hospital/:id/staff',

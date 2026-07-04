@@ -1,7 +1,8 @@
-import {Component, inject, signal} from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import {PatientCaseModel} from '../../../model/PatientCaseModel';
 import {PatientCaseService} from '../../../services/patient-case/patient-case.service';
 import {MxTableComponent, PaginationDetails} from '../../../common/mx-table/mx-table.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-patient-case',
@@ -12,9 +13,10 @@ import {MxTableComponent, PaginationDetails} from '../../../common/mx-table/mx-t
   styleUrl: './admin-patient-case.component.scss',
   standalone: true
 })
-export class AdminPatientCase {
+export class AdminPatientCase implements OnInit{
   public readonly columns: (keyof Partial<PatientCaseModel>)[] = ['name', 'patientId', 'hospitalName'];
   private patientCaseService = inject(PatientCaseService);
+  private router = inject(Router);
 
   public dataList = signal<PatientCaseModel[]>([]);
   public paginationDetails = signal<PaginationDetails>({
@@ -27,6 +29,10 @@ export class AdminPatientCase {
 
   ngOnInit(): void {
     this.loadPage(1);
+  }
+
+  vewCase(caseId: any): void {
+    this.router.navigate(['admin/patient-cases/' + caseId])
   }
 
   loadPage(page: number): void {
