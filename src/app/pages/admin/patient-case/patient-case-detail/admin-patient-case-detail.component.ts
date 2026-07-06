@@ -7,6 +7,8 @@ import {Modal} from '../../../../common/modal/modal';
 import {DoctorModel} from '../../../../model/DoctorModel';
 import {DoctorService} from '../../../../services/doctor/doctor.service';
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {EventService} from '../../../../services/event/event.service';
+import {NotificationModel} from '../../../../model/NotificationModel';
 
 export enum AssignmentRole {
   PRIMARY = 'PRIMARY',
@@ -31,10 +33,12 @@ export class AdminPatientCaseDetail implements OnInit {
   public imageIds = signal<string[]>([]);
   private patientCaseService = inject(PatientCaseService);
   public patientCase = signal<PatientCaseModel | undefined>(undefined);
-  public openModal: boolean = false;
+  public openModal = signal<boolean>(false);
   public doctorList = signal<DoctorModel[]>([]);
   private doctorService = inject(DoctorService);
+  private eventService = inject(EventService);
   assignForm: FormGroup;
+  private isSubmitting: boolean = false;
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute) {
     this.assignForm = new FormGroup({
@@ -63,19 +67,35 @@ export class AdminPatientCaseDetail implements OnInit {
 
   public openAssignModal(): void {
     this.assignForm.reset();
-    this.openModal = true;
+    this.openModal.set(true);
   }
 
   submit() {
+    if (this.isSubmitting) return;
     if (this.assignForm.invalid) {
       this.assignForm.markAllAsDirty();
       return;
     }
     // submit form data.
+    this.isSubmitting = true;
+    const doctorId: number = this.assignForm.get('doctorId')?.value;
+    const role: AssignmentRole = this.assignForm.get('role')?.value;
+    if(!this.patientCaseId) return;
+    firstValueFrom(this.patientCaseService.assignDoctorToCase(
+      doctorId,
+      this.patientCaseId,
+      role
+    )).then((isSuccess) => {
+      if (isSuccess) {
+        this.close();
+        this.eventService.emit({ message: 'Patient Case has been assigned to the doctor.' });
+      }
+      this.isSubmitting = false;
+    });
   }
 
   close() {
-    this.openModal = false;
+    this.openModal.set(false);
   }
 
   private fetchPatientCaseDetails(caseId: number): void {

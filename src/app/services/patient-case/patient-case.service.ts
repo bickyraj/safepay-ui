@@ -1,11 +1,9 @@
-import {inject, Injectable, signal, WritableSignal} from '@angular/core';
-import {firstValueFrom, map, Observable, Subject} from 'rxjs';
+import {inject, Injectable, WritableSignal} from '@angular/core';
+import {firstValueFrom, map, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {PatientCaseModel} from '../../model/PatientCaseModel';
 import {ApiPaginatedResponseDTO} from '../../common/dto/ApiPaginatedResponseDTO';
-import {DoctorModel} from '../../model/DoctorModel';
-import {HospitalModel} from '../../model/HospitalModel';
-import {UserModel} from '../../model/UserModel';
+import {AssignmentRole} from '../../pages/admin/patient-case/patient-case-detail/admin-patient-case-detail.component';
 
 @Injectable({
   providedIn: 'root',
@@ -84,5 +82,14 @@ export class PatientCaseService {
       .pipe(
         map(response => Object.assign(new PatientCaseModel(), response))
       );
+  }
+
+  public assignDoctorToCase(doctorId: number, caseId: number, role: AssignmentRole): Observable<boolean> {
+    const url = new URL("http://localhost:8084/api/patient-case/assign-case");
+    return this.httpClient.post<boolean>(url.toString(), {
+      doctorId: doctorId,
+      patientCaseId: caseId,
+      role: role
+    });
   }
 }

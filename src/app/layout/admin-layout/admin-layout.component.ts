@@ -4,17 +4,19 @@ import {HeaderComponent} from '../header/header.component';
 import {PageHeaderComponent} from '../page-header/page-header.component';
 import {RouterOutlet} from '@angular/router';
 import {Breadcrumb} from "../../common/breadcrumb/breadcrumb";
+import {Toast} from '../../common/toast/toast';
 
 @Component({
   selector: 'app-admin-layout',
   standalone: true,
   templateUrl: './admin-layout.component.html',
-    imports: [
-        SidebarComponent,
-        HeaderComponent,
-        RouterOutlet,
-        Breadcrumb
-    ],
+  imports: [
+    SidebarComponent,
+    HeaderComponent,
+    RouterOutlet,
+    Breadcrumb,
+    Toast
+  ],
   styleUrl: './admin-layout.component.css'
 })
 export class AdminLayoutComponent {

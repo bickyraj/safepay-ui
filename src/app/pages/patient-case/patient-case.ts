@@ -1,7 +1,6 @@
 import {Component, inject, OnInit, signal} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {MxTableComponent, PaginationDetails} from '../../common/mx-table/mx-table.component';
-import {DoctorModel} from '../../model/DoctorModel';
 import {PatientCaseModel} from '../../model/PatientCaseModel';
 import {PatientCaseService} from '../../services/patient-case/patient-case.service';
 
