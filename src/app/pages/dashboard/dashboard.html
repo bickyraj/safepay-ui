@@ -1,1 +1,437 @@
-<p>dashboard works!</p>
+<div class="min-h-screen space-y-6">
+
+
+  <!-- Top Header -->
+  <div class="rounded-lg bg-gradient-to-r from-blue-700 via-cyan-500 to-sky-400 p-6 text-white">
+
+    <div class="flex flex-col lg:flex-row justify-between gap-5">
+
+      <div>
+        <p class="text-blue-100 text-sm">
+          Teleradiology Control Center
+        </p>
+
+        <h1 class="text-3xl capitalize font-bold mt-2">
+          Good Morning, {{ userName }}
+        </h1>
+
+        <p class="text-blue-50 mt-2">
+          Monitor cases, assignments and reporting workflow.
+        </p>
+      </div>
+
+
+      <div class="flex items-center gap-3">
+
+        <div class="rounded bg-white/20 px-5 py-3">
+
+          <p class="text-xs text-blue-100">
+            Active Cases
+          </p>
+
+          <p class="text-2xl font-bold">
+            24
+          </p>
+
+        </div>
+
+
+        <div class="rounded bg-white/20 px-5 py-3">
+
+          <p class="text-xs text-blue-100">
+            Doctors Online
+          </p>
+
+          <p class="text-2xl font-bold">
+            8
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <!-- Main Statistics -->
+
+  <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
+
+
+    <div class="rounded border border-slate-200 bg-white p-5">
+
+      <p class="text-sm text-slate-500">
+        New Studies
+      </p>
+
+      <h2 class="text-3xl font-bold text-slate-800 mt-3">
+        15
+      </h2>
+
+    </div>
+
+
+
+    <div class="rounded border border-slate-200 bg-white p-5">
+
+      <p class="text-sm text-slate-500">
+        Waiting Assignment
+      </p>
+
+      <h2 class="text-3xl font-bold text-amber-600 mt-3">
+        6
+      </h2>
+
+    </div>
+
+
+
+    <div class="rounded border border-slate-200 bg-white p-5">
+
+      <p class="text-sm text-slate-500">
+        In Review
+      </p>
+
+      <h2 class="text-3xl font-bold text-blue-600 mt-3">
+        11
+      </h2>
+
+    </div>
+
+
+
+    <div class="rounded border border-slate-200 bg-white p-5">
+
+      <p class="text-sm text-slate-500">
+        Completed
+      </p>
+
+      <h2 class="text-3xl font-bold text-emerald-600 mt-3">
+        45
+      </h2>
+
+    </div>
+
+
+
+    <div class="rounded border border-slate-200 bg-white p-5">
+
+      <p class="text-sm text-slate-500">
+        Urgent
+      </p>
+
+      <h2 class="text-3xl font-bold text-red-600 mt-3">
+        3
+      </h2>
+
+    </div>
+
+
+  </div>
+
+
+
+
+
+  <!-- Work Area -->
+
+  <div class="grid xl:grid-cols-4 gap-6">
+
+
+
+    <!-- Case Queue -->
+
+    <div class="xl:col-span-3 rounded-lg border border-slate-200 bg-white p-6">
+
+
+      <div class="flex justify-between items-center mb-6">
+
+        <div>
+
+          <h2 class="text-xl font-semibold text-slate-800">
+            Live Case Queue
+          </h2>
+
+          <p class="text-sm text-slate-500">
+            Incoming radiology studies
+          </p>
+
+        </div>
+
+
+        <button class="rounded bg-blue-600 px-4 py-2 text-white">
+          Assign Case
+        </button>
+
+
+      </div>
+
+
+
+
+      <div class="space-y-3">
+
+
+        <div class="rounded border border-slate-200 p-4 flex justify-between items-center">
+
+
+          <div class="flex gap-4 items-center">
+
+
+            <div class="rounded bg-red-100 p-3 text-red-600">
+              CT
+            </div>
+
+
+            <div>
+
+              <h3 class="font-semibold text-slate-800">
+                Patient #PT-1025
+              </h3>
+
+              <p class="text-sm text-slate-500">
+                Brain CT • City Hospital
+              </p>
+
+            </div>
+
+
+          </div>
+
+
+
+          <div class="text-right">
+
+            <span class="rounded bg-red-100 px-3 py-1 text-sm text-red-700">
+              STAT
+            </span>
+
+            <p class="text-xs text-slate-500 mt-2">
+              5 min ago
+            </p>
+
+          </div>
+
+
+        </div>
+
+
+
+
+
+        <div class="rounded border border-slate-200 p-4 flex justify-between items-center">
+
+
+          <div class="flex gap-4 items-center">
+
+
+            <div class="rounded bg-blue-100 p-3 text-blue-600">
+              MRI
+            </div>
+
+
+            <div>
+
+              <h3 class="font-semibold text-slate-800">
+                Patient #PT-1042
+              </h3>
+
+              <p class="text-sm text-slate-500">
+                Spine MRI • Metro Hospital
+              </p>
+
+            </div>
+
+
+          </div>
+
+
+
+          <span class="rounded bg-amber-100 px-3 py-1 text-sm text-amber-700">
+            Pending
+          </span>
+
+
+        </div>
+
+
+
+
+      </div>
+
+
+    </div>
+
+
+
+
+
+
+
+    <!-- Right Panel -->
+
+    <div class="space-y-6">
+
+
+      <!-- Doctor Status -->
+
+      <div class="rounded-lg border border-slate-200 bg-white p-5">
+
+
+        <h2 class="font-semibold text-slate-800">
+          Radiologists
+        </h2>
+
+
+        <div class="space-y-4 mt-5">
+
+
+          <div class="flex justify-between">
+
+            <span>
+              Dr. Sarah
+            </span>
+
+            <span class="rounded bg-emerald-100 px-2 py-1 text-xs text-emerald-700">
+              Online
+            </span>
+
+          </div>
+
+
+          <div class="flex justify-between">
+
+            <span>
+              Dr. James
+            </span>
+
+            <span class="rounded bg-blue-100 px-2 py-1 text-xs text-blue-700">
+              Reviewing
+            </span>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+
+
+
+      <!-- System -->
+
+      <div class="rounded-lg border border-slate-200 bg-white p-5">
+
+
+        <h2 class="font-semibold text-slate-800">
+          System Status
+        </h2>
+
+
+        <div class="mt-5 space-y-3">
+
+
+          <div class="flex justify-between">
+            <span class="text-slate-500">
+              DICOM Server
+            </span>
+
+            <span class="text-emerald-600 font-medium">
+              Online
+            </span>
+          </div>
+
+
+          <div class="flex justify-between">
+            <span class="text-slate-500">
+              Storage
+            </span>
+
+            <span class="text-emerald-600 font-medium">
+              Normal
+            </span>
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+
+
+
+
+  <!-- Bottom -->
+
+  <div class="grid lg:grid-cols-3 gap-6">
+
+
+    <div class="rounded border border-slate-200 bg-white p-6">
+
+      <h2 class="font-semibold text-slate-800">
+        Recent Uploads
+      </h2>
+
+      <p class="text-sm text-slate-500 mt-4">
+        MRI Brain uploaded by City Hospital
+      </p>
+
+      <p class="text-sm text-slate-500 mt-3">
+        Chest CT uploaded by Central Care
+      </p>
+
+    </div>
+
+
+
+
+    <div class="rounded border border-slate-200 bg-white p-6">
+
+      <h2 class="font-semibold text-slate-800">
+        Pending Reports
+      </h2>
+
+      <p class="text-4xl font-bold text-slate-800 mt-4">
+        9
+      </p>
+
+    </div>
+
+
+
+
+    <div class="rounded border border-slate-200 bg-white p-6">
+
+      <h2 class="font-semibold text-slate-800">
+        Average Reporting Time
+      </h2>
+
+      <p class="text-4xl font-bold text-blue-600 mt-4">
+        28m
+      </p>
+
+    </div>
+
+
+  </div>
+
+
+
+</div>
