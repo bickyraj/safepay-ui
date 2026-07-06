@@ -8,6 +8,7 @@ import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '
 })
 export class Modal {
   @Input() isOpen: boolean = false;
+  @Input() subTitle!: string;
   @Input() title: string = '';
   @Output() isOpenChange = new EventEmitter<boolean>();
 

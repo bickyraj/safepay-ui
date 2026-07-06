@@ -29,6 +29,10 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets/"
+              },
+              {
+                "glob": "*Worker*",
+                "input": "node_modules/@cornerstonejs/dicom-image-loader/dist/esm"
               }
             ],
             "styles": [
@@ -61,6 +65,11 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "prebundle": {
+              "exclude": ["@cornerstonejs/dicom-image-loader"]
+            }
+          },
           "configurations": {
             "production": {
               "buildTarget": "safepay-ui:build:production"

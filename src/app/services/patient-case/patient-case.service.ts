@@ -77,4 +77,12 @@ export class PatientCaseService {
         }))
       );
   }
+
+  public getPatientCaseDetailWithDocumentsByCaseId(caseId: number): Observable<PatientCaseModel> {
+    const url = new URL("http://localhost:8084/api/patient-case/" + caseId);
+    return this.httpClient.get<PatientCaseModel>(url.toString())
+      .pipe(
+        map(response => Object.assign(new PatientCaseModel(), response))
+      );
+  }
 }

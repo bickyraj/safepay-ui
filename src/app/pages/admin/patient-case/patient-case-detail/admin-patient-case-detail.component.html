@@ -1,1 +1,345 @@
-<p>patient-case-detail works!</p>
+  <!-- Header -->
+  <div>
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-5">
+
+      <div class="flex items-center gap-5">
+        <div class="h-14 w-14 rounded bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+          {{ initial() }}
+        </div>
+
+        <div>
+          <h1 class="capitalize text-2xl font-bold text-slate-800">{{ patientCase()?.name }}</h1>
+          <p class="text-slate-500">Patient ID • #{{ patientCase()?.patientId }}</p>
+        </div>
+      </div>
+
+      <div class="flex gap-3">
+
+        <button class="px-6 py-3 rounded bg-white border border-slate-200 text-slate-700 font-medium hover:bg-slate-50 transition">
+          Download Records
+        </button>
+
+        <button (click)="openAssignModal()" class="px-6 py-3 rounded bg-blue-600 text-white font-semibold shadow-lg hover:bg-blue-700 transition">
+          Assign to Doctor
+        </button>
+        <app-modal
+          title="Assign Doctor"
+          subTitle="Select a doctor and role for this patient case"  [(isOpen)]="openModal">
+
+          <form [formGroup]="assignForm" class="space-y-6">
+
+              <!-- Select Doctor -->
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-2">
+                  Doctor
+                </label>
+
+                <div class="relative">
+                  <select
+                    formControlName="doctorId"
+                    class="w-full appearance-none rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition"
+                  >
+                    <option selected [ngValue]="null">Select doctor</option>
+                    @for(doctor of doctorList(); track doctor.id) {
+                      <option class="capitalize" [ngValue]="doctor.id">Dr. {{ doctor.name }}</option>
+                    }
+                  </select>
+
+                  <div class="absolute right-3 top-3.5 text-slate-400 pointer-events-none">
+                    ▼
+                  </div>
+                  @if (
+                    assignForm.controls['doctorId'].invalid &&
+                    assignForm.controls['doctorId'].dirty
+                    ) {
+                    <div class="text-sm text-red-500 mt-1.5">A doctor is required.</div>
+                  }
+                </div>
+              </div>
+
+              <!-- Select Role -->
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-2">
+                  Role
+                </label>
+
+                <div class="relative">
+                  <select
+                    formControlName="role"
+                    class="w-full appearance-none rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition"
+                  >
+                    <option [ngValue]="null">Select role</option>
+                    <option value="PRIMARY">Primary Radiologist</option>
+                    <option value="REVIEWER">Reviewer</option>
+                    <option value="SECOND_OPINION">Second Opinion</option>
+                  </select>
+
+                  <div class="absolute right-3 top-3.5 text-slate-400 pointer-events-none">
+                    ▼
+                  </div>
+                  @if (
+                    assignForm.controls['role'].invalid &&
+                    assignForm.controls['role'].dirty
+                    ){
+                    <div class="text-sm text-red-500 mt-1.5">
+                      Please select a role.
+                    </div>
+                  }
+                </div>
+              </div>
+
+              <!-- Info hint -->
+              <div class="bg-blue-50 border border-blue-100 text-blue-700 text-sm p-4 rounded-xl">
+                Assignment will notify the selected doctor immediately.
+              </div>
+
+            </form>
+          <div modal-footer class="flex gap-3">
+              <button
+                (click)="close()"
+                type="button"
+                class="px-4 rounded border border-slate-300 text-slate-700 font-medium hover:bg-slate-50 transition"
+              >
+                Cancel
+              </button>
+
+              <button
+                (click)="submit()"
+                type="submit"
+                class="px-4 py-3 rounded bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 transition"
+              >
+                Assign Case
+              </button>
+          </div>
+        </app-modal>
+      </div>
+
+    </div>
+
+    <!-- Main Grid -->
+    <div class="grid lg:grid-cols-3 gap-4">
+
+      <!-- Left -->
+      <div class="lg:col-span-2 space-y-4">
+
+        <!-- Patient Information -->
+        <div class="bg-white rounded shadow-sm border border-slate-200 p-8">
+
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl font-semibold text-slate-800">
+              Patient Information
+            </h2>
+
+            <button
+              class="inline-flex items-center px-4 py-2 text-sm font-medium text-yellow-800 bg-yellow-100 rounded-full cursor-default"
+            >
+              <span class="w-2.5 h-2.5 mr-2 bg-yellow-500 rounded-full"></span>
+              Pending
+            </button>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+
+            <div>
+              <p class="text-sm text-slate-500">Patient ID</p>
+              <h3 class="font-semibold text-sm text-slate-800">PT-{{ patientCase()?.patientId }}</h3>
+            </div>
+
+            <div>
+              <p class="text-sm text-slate-500">Patient Name</p>
+              <h3 class="font-semibold text-sm text-slate-800 capitalize">{{ patientCase()?.name }}</h3>
+            </div>
+
+            <div>
+              <p class="text-sm text-slate-500">Hospital</p>
+              <h3 class="font-semibold text-sm text-slate-800 capitalize">
+                {{ patientCase()?.hospitalName }}
+              </h3>
+            </div>
+
+            <div>
+              <p class="text-sm text-slate-500">Created Date</p>
+              <h3 class="font-semibold text-sm text-slate-800">
+                12 July 2025
+              </h3>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Attached Files -->
+        <div class="bg-white rounded shadow-sm border border-slate-200 p-8">
+
+          <div class="flex justify-between items-center mb-6">
+
+            <div>
+              <h2 class="text-xl font-semibold text-slate-800">
+                Medical Documents
+              </h2>
+              <p class="text-slate-500 text-sm">
+                Attached reports, scans and prescriptions
+              </p>
+            </div>
+
+            <span class="bg-slate-100 px-4 py-2 rounded text-slate-700 font-semibold">
+                {{ patientCase()?.documents?.length }} Files
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
+            @for (document of patientCase()?.documents; track document.id) {
+              <div class="flex flex-col justify-between rounded border border-slate-200 p-3 hover:border-blue-400 hover:bg-blue-50 transition">
+
+                <div class="flex items-center gap-2">
+
+                  <div class="h-6 w-6 rounded flex items-center justify-center text-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12h6m-6 4h6M9 8h6M6 3h9l3 3v15a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2z" />
+                    </svg>
+                  </div>
+
+                  <div class="min-w-0">
+                    <h3 class="font-semibold text-slate-800 truncate" title="{{ document.fileName }}">
+                      {{ document.fileName }}
+                    </h3>
+                    <!--<p class="text-sm text-slate-500">
+                      Uploaded 2 days ago
+                    </p>-->
+                  </div>
+
+                </div>
+
+                <div class="flex-row">
+                  <button class="mt-4 bg-blue-100 py-0.5 px-1.5 rounded text-xs text-blue-600 font-semibold text-left">
+                    View
+                  </button>
+                </div>
+
+              </div>
+            }
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="space-y-4">
+
+        <!-- Status Card -->
+        <div class="bg-gradient-to-br from-blue-600 to-cyan-500 rounded text-white p-8 shadow-xl">
+
+          <p class="text-blue-100 mb-2">
+            Current Status
+          </p>
+
+          <h2 class="text-2xl font-bold mb-6">
+            Pending
+          </h2>
+
+          <div class="space-y-5">
+
+            <div class="flex justify-between">
+                        <span class="text-blue-100">
+                            Assigned Doctor
+                        </span>
+
+              <span class="font-semibold">
+                  Not Assigned
+              </span>
+            </div>
+
+<!--            <div class="flex justify-between">-->
+<!--                        <span class="text-blue-100">-->
+<!--                            Hospital-->
+<!--                        </span>-->
+
+<!--              <span class="font-semibold">-->
+<!--                            City Care-->
+<!--                        </span>-->
+<!--            </div>-->
+
+            <div class="flex justify-between">
+                        <span class="text-blue-100">
+                            Created
+                        </span>
+
+              <span class="font-semibold">
+                            12 Jul 2025
+                        </span>
+            </div>
+
+          </div>
+
+          <button class="w-full mt-8 bg-white text-blue-600 font-semibold py-3 rounded hover:bg-slate-100 transition">
+            Assign Doctor
+          </button>
+
+        </div>
+
+        <!-- Timeline -->
+        <div class="bg-white rounded shadow-sm border border-slate-200 p-8">
+
+          <h2 class="font-semibold text-xl mb-6">
+            Workflow
+          </h2>
+
+          <div class="space-y-6">
+
+            <div class="flex gap-4">
+              <div class="h-4 w-4 rounded bg-green-500 mt-1"></div>
+              <div>
+                <h3 class="font-semibold">
+                  Record Created
+                </h3>
+                <p class="text-sm text-slate-500">
+                  12 July 2025
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="h-4 w-4 rounded bg-amber-500 mt-1"></div>
+              <div>
+                <h3 class="font-semibold">
+                  Pending Review
+                </h3>
+                <p class="text-sm text-slate-500">
+                  Waiting for doctor assignment
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4 opacity-50">
+              <div class="h-4 w-4 rounded bg-slate-300 mt-1"></div>
+              <div>
+                <h3 class="font-semibold">
+                  Verified
+                </h3>
+                <p class="text-sm text-slate-500">
+                  Awaiting completion
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4 opacity-50">
+              <div class="h-4 w-4 rounded bg-slate-300 mt-1"></div>
+              <div>
+                <h3 class="font-semibold">
+                  Completed
+                </h3>
+                <p class="text-sm text-slate-500">
+                  Final review pending
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
