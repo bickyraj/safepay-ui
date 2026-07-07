@@ -249,7 +249,7 @@
                         </span>
               <span class="font-semibold">
                 @if(patientCase()?.assignedDoctors?.length) {
-                  {{ patientCase()?.assignedDoctors?.[0]?.doctor?.firstName }}
+                  Dr. {{ patientCase()?.assignedDoctors?.[0]?.doctor?.firstName }}
                   {{ patientCase()?.assignedDoctors?.[0]?.doctor?.lastName }}
                 } @else {
                   Not Assigned
