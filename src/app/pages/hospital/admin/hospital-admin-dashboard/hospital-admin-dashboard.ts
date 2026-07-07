@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
+import { AuthService } from '../../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-hospital-admin-dashboard',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   standalone: true
 })
 export class HospitalAdminDashboard {
-
+  public readonly authService = inject(AuthService);
 }

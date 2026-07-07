@@ -1,87 +1,539 @@
-<div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+<div class="min-h-screen bg-slate-50 space-y-6">
 
-  <!-- Total Cases -->
-  <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-all duration-300">
-    <div class="flex items-center justify-between">
-      <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
-        <i class="heroicon heroicon-document-text h-6 w-6 text-blue-600"></i>
+
+  <!-- Header -->
+
+  <div class="rounded-lg bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-500 p-8 text-white">
+
+    <div class="flex flex-col lg:flex-row justify-between gap-6">
+
+      <div>
+
+        <p class="text-blue-100 text-sm">
+          Hospital Administration Portal
+        </p>
+
+        <h1 class="text-3xl font-bold mt-2 capitalize">
+          {{ authService.getBusinessName() }}
+        </h1>
+
+        <p class="text-blue-100 mt-2">
+          Monitor submitted radiology cases and reporting progress.
+        </p>
+
       </div>
 
-      <span class="rounded-full bg-green-100 px-2.5 py-1 text-xs font-semibold text-green-700">
-        +12%
-      </span>
-    </div>
 
-    <div class="mt-5">
-      <p class="text-sm text-gray-500">Total Cases</p>
-      <h2 class="mt-1 text-3xl font-bold text-gray-900">1,248</h2>
-      <p class="mt-2 text-sm text-gray-500">
-        All registered patient cases.
-      </p>
-    </div>
-  </div>
+      <div class="flex items-center">
 
-  <!-- Pending -->
-  <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-all duration-300">
-    <div class="flex items-center justify-between">
-      <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-amber-100">
-        <i class="heroicon heroicon-clock h-6 w-6 text-amber-600"></i>
+        <button
+          class="rounded bg-white px-6 py-3 text-blue-600 font-semibold hover:bg-blue-50 transition">
+
+          Upload New Case
+
+        </button>
+
       </div>
 
-      <span class="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-semibold text-amber-700">
-        186 Open
-      </span>
+
     </div>
 
-    <div class="mt-5">
-      <p class="text-sm text-gray-500">Pending Cases</p>
-      <h2 class="mt-1 text-3xl font-bold text-amber-600">186</h2>
-      <p class="mt-2 text-sm text-gray-500">
-        Waiting for review or action.
-      </p>
-    </div>
+
   </div>
 
-  <!-- Completed -->
-  <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-all duration-300">
-    <div class="flex items-center justify-between">
-      <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-100">
-        <i class="heroicon heroicon-check-circle h-6 w-6 text-emerald-600"></i>
+
+
+
+
+  <!-- Statistics -->
+
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-5">
+
+
+    <div class="rounded border border-slate-200 bg-white p-6">
+
+      <p class="text-sm text-slate-500">
+        Total Cases
+      </p>
+
+      <h2 class="text-4xl font-bold text-slate-800 mt-3">
+        248
+      </h2>
+
+    </div>
+
+
+
+
+    <div class="rounded border border-slate-200 bg-white p-6">
+
+      <p class="text-sm text-slate-500">
+        Waiting Review
+      </p>
+
+      <h2 class="text-4xl font-bold text-amber-600 mt-3">
+        32
+      </h2>
+
+    </div>
+
+
+
+
+    <div class="rounded border border-slate-200 bg-white p-6">
+
+      <p class="text-sm text-slate-500">
+        Under Analysis
+      </p>
+
+      <h2 class="text-4xl font-bold text-blue-600 mt-3">
+        18
+      </h2>
+
+    </div>
+
+
+
+
+    <div class="rounded border border-slate-200 bg-white p-6">
+
+      <p class="text-sm text-slate-500">
+        Completed Reports
+      </p>
+
+      <h2 class="text-4xl font-bold text-emerald-600 mt-3">
+        190
+      </h2>
+
+    </div>
+
+
+
+
+    <div class="rounded border border-slate-200 bg-white p-6">
+
+      <p class="text-sm text-slate-500">
+        Urgent Cases
+      </p>
+
+      <h2 class="text-4xl font-bold text-red-600 mt-3">
+        8
+      </h2>
+
+    </div>
+
+
+  </div>
+
+
+
+
+
+
+
+  <!-- Main Content -->
+
+  <div class="grid xl:grid-cols-3 gap-6">
+
+
+
+    <!-- Cases Overview -->
+
+    <div class="xl:col-span-2 rounded border border-slate-200 bg-white p-6">
+
+
+      <div class="flex justify-between items-center mb-6">
+
+
+        <div>
+
+          <h2 class="text-xl font-semibold text-slate-800">
+            Recent Patient Cases
+          </h2>
+
+          <p class="text-sm text-slate-500">
+            Latest uploaded radiology studies
+          </p>
+
+        </div>
+
+
+        <button class="text-blue-600 font-semibold">
+          View All
+        </button>
+
+
       </div>
 
-      <span class="rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-semibold text-emerald-700">
-        76%
-      </span>
-    </div>
 
-    <div class="mt-5">
-      <p class="text-sm text-gray-500">Completed Cases</p>
-      <h2 class="mt-1 text-3xl font-bold text-emerald-600">947</h2>
-      <p class="mt-2 text-sm text-gray-500">
-        Successfully completed cases.
-      </p>
-    </div>
-  </div>
 
-  <!-- Verified -->
-  <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-all duration-300">
-    <div class="flex items-center justify-between">
-      <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-100">
-        <i class="heroicon heroicon-shield-check h-6 w-6 text-indigo-600"></i>
+
+
+      <div class="space-y-4">
+
+
+        <!-- Case -->
+
+        <div class="rounded border border-slate-200 p-5">
+
+
+          <div class="flex justify-between">
+
+
+            <div>
+
+              <h3 class="font-semibold text-slate-800">
+                Patient #PT-10452
+              </h3>
+
+
+              <p class="text-sm text-slate-500">
+                MRI Brain • Uploaded 2 hours ago
+              </p>
+
+            </div>
+
+
+
+            <span class="rounded bg-amber-100 px-3 py-1 text-sm text-amber-700">
+              Pending Review
+            </span>
+
+
+          </div>
+
+
+
+          <div class="flex justify-between mt-5 text-sm">
+
+
+            <span class="text-slate-500">
+              Assigned Doctor
+            </span>
+
+
+            <span class="font-semibold">
+              Dr. Michael Brown
+            </span>
+
+
+          </div>
+
+
+        </div>
+
+
+
+
+
+
+        <div class="rounded border border-slate-200 p-5">
+
+
+          <div class="flex justify-between">
+
+
+            <div>
+
+              <h3 class="font-semibold text-slate-800">
+                Patient #PT-10321
+              </h3>
+
+
+              <p class="text-sm text-slate-500">
+                CT Chest • Uploaded yesterday
+              </p>
+
+            </div>
+
+
+
+            <span class="rounded bg-emerald-100 px-3 py-1 text-sm text-emerald-700">
+              Completed
+            </span>
+
+
+          </div>
+
+
+
+
+          <div class="mt-5">
+
+            <button class="rounded bg-blue-100 px-4 py-2 text-sm text-blue-700 font-semibold">
+              View Report
+            </button>
+
+          </div>
+
+
+        </div>
+
+
+
       </div>
 
-      <span class="rounded-full bg-indigo-100 px-2.5 py-1 text-xs font-semibold text-indigo-700">
-        QA Passed
-      </span>
+
     </div>
 
-    <div class="mt-5">
-      <p class="text-sm text-gray-500">Verified Cases</p>
-      <h2 class="mt-1 text-3xl font-bold text-indigo-600">812</h2>
-      <p class="mt-2 text-sm text-gray-500">
-        Approved and verified records.
-      </p>
+
+
+
+
+
+
+    <!-- Right Side -->
+
+    <div class="space-y-6">
+
+
+
+      <!-- Case Status -->
+
+      <div class="rounded border border-slate-200 bg-white p-6">
+
+
+        <h2 class="font-semibold text-xl text-slate-800">
+          Case Status
+        </h2>
+
+
+        <div class="space-y-5 mt-6">
+
+
+          <div>
+
+            <div class="flex justify-between text-sm mb-2">
+
+              <span>
+                Completed
+              </span>
+
+              <span class="font-semibold">
+                76%
+              </span>
+
+            </div>
+
+
+            <div class="rounded bg-slate-100 h-3">
+
+              <div class="rounded bg-emerald-500 h-3 w-3/4"></div>
+
+            </div>
+
+
+          </div>
+
+
+
+
+
+          <div>
+
+            <div class="flex justify-between text-sm mb-2">
+
+              <span>
+                Waiting
+              </span>
+
+              <span class="font-semibold">
+                13%
+              </span>
+
+            </div>
+
+
+            <div class="rounded bg-slate-100 h-3">
+
+              <div class="rounded bg-amber-500 h-3 w-1/4"></div>
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+
+
+
+
+
+      <!-- Assigned Doctors -->
+
+
+      <div class="rounded border border-slate-200 bg-white p-6">
+
+
+        <h2 class="font-semibold text-xl text-slate-800">
+          Radiologists
+        </h2>
+
+
+        <div class="space-y-4 mt-5">
+
+
+          <div class="flex justify-between">
+
+            <div>
+
+              <p class="font-semibold">
+                Dr. Sarah
+              </p>
+
+              <p class="text-sm text-slate-500">
+                12 Active Cases
+              </p>
+
+            </div>
+
+
+            <span class="rounded bg-emerald-100 px-2 py-1 text-xs text-emerald-700">
+              Available
+            </span>
+
+
+          </div>
+
+
+
+          <div class="flex justify-between">
+
+            <div>
+
+              <p class="font-semibold">
+                Dr. James
+              </p>
+
+              <p class="text-sm text-slate-500">
+                8 Active Cases
+              </p>
+
+            </div>
+
+
+            <span class="rounded bg-blue-100 px-2 py-1 text-xs text-blue-700">
+              Busy
+            </span>
+
+
+          </div>
+
+
+
+        </div>
+
+
+      </div>
+
+
     </div>
+
+
+
   </div>
+
+
+
+
+
+
+  <!-- Bottom Section -->
+
+
+  <div class="grid lg:grid-cols-3 gap-6">
+
+
+    <div class="rounded border border-slate-200 bg-white p-6">
+
+      <h2 class="font-semibold text-slate-800">
+        Recent Activity
+      </h2>
+
+
+      <div class="mt-5 space-y-4 text-sm">
+
+
+        <p>
+          MRI Brain report completed
+          <span class="text-slate-500">
+            15 min ago
+          </span>
+        </p>
+
+
+        <p>
+          New DICOM study uploaded
+          <span class="text-slate-500">
+            1 hour ago
+          </span>
+        </p>
+
+
+      </div>
+
+
+    </div>
+
+
+
+
+
+    <div class="rounded border border-slate-200 bg-white p-6">
+
+
+      <h2 class="font-semibold text-slate-800">
+        Average Reporting Time
+      </h2>
+
+
+      <p class="text-5xl font-bold text-blue-600 mt-5">
+        34m
+      </p>
+
+
+      <p class="text-sm text-slate-500 mt-2">
+        Average turnaround time
+      </p>
+
+
+    </div>
+
+
+
+
+
+
+    <div class="rounded border border-slate-200 bg-white p-6">
+
+
+      <h2 class="font-semibold text-slate-800">
+        Storage Usage
+      </h2>
+
+
+      <p class="text-5xl font-bold text-slate-800 mt-5">
+        68%
+      </p>
+
+
+      <p class="text-sm text-slate-500 mt-2">
+        DICOM storage capacity
+      </p>
+
+
+    </div>
+
+
+
+  </div>
+
+
 
 </div>
