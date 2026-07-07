@@ -87,6 +87,8 @@ export class AdminPatientCaseDetail implements OnInit {
       role
     )).then((isSuccess) => {
       if (isSuccess) {
+        if (!this.patientCaseId) return;
+        this.fetchPatientCaseDetails(this.patientCaseId);
         this.close();
         this.eventService.emit({ message: 'Patient Case has been assigned to the doctor.' });
       }

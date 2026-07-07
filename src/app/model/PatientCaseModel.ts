@@ -1,9 +1,18 @@
+import {AssignmentRole} from '../pages/admin/patient-case/patient-case-detail/admin-patient-case-detail.component';
+import {DoctorModel} from './DoctorModel';
+
 export class PatientCaseModel {
   id!: number;
   name!: string;
   patientId!: string;
   hospitalName!: string;
-  documents!: PatientCaseDocumentModel[]
+  documents!: PatientCaseDocumentModel[];
+  assignedDoctors!: AssignedDoctorModel[];
+}
+
+export class AssignedDoctorModel {
+  doctor!: DoctorModel;
+  role!: AssignmentRole;
 }
 
 export class PatientCaseDocumentModel {

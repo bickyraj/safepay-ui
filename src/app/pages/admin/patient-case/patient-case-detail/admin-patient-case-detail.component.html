@@ -19,14 +19,15 @@
           Download Records
         </button>
 
-        <button (click)="openAssignModal()" class="px-6 py-3 rounded bg-blue-600 text-white font-semibold shadow-lg hover:bg-blue-700 transition">
-          Assign to Doctor
-        </button>
-        <app-modal
-          title="Assign Doctor"
-          subTitle="Select a doctor and role for this patient case"  [(isOpen)]="openModal">
+        @if (patientCase() && !patientCase()?.assignedDoctors?.length) {
+          <button (click)="openAssignModal()" class="px-6 py-3 rounded bg-blue-600 text-white font-semibold shadow-lg hover:bg-blue-700 transition">
+            Assign to Doctor
+          </button>
+          <app-modal
+            title="Assign Doctor"
+            subTitle="Select a doctor and role for this patient case"  [(isOpen)]="openModal">
 
-          <form [formGroup]="assignForm" class="space-y-6">
+            <form [formGroup]="assignForm" class="space-y-6">
 
               <!-- Select Doctor -->
               <div>
@@ -94,7 +95,7 @@
               </div>
 
             </form>
-          <div modal-footer class="flex gap-3">
+            <div modal-footer class="flex gap-3">
               <button
                 (click)="close()"
                 type="button"
@@ -110,8 +111,9 @@
               >
                 Assign Case
               </button>
-          </div>
-        </app-modal>
+            </div>
+          </app-modal>
+        }
       </div>
 
     </div>
@@ -245,9 +247,13 @@
                         <span class="text-blue-100">
                             Assigned Doctor
                         </span>
-
               <span class="font-semibold">
+                @if(patientCase()?.assignedDoctors?.length) {
+                  {{ patientCase()?.assignedDoctors?.[0]?.doctor?.firstName }}
+                  {{ patientCase()?.assignedDoctors?.[0]?.doctor?.lastName }}
+                } @else {
                   Not Assigned
+                }
               </span>
             </div>
 
