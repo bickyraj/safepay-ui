@@ -1,0 +1,18 @@
+<div class="flex min-h-screen">
+  <app-toast/>
+  <app-doctor-admin-sidebar/>
+  <div class="flex-1">
+    <main class="h-screen">
+      <app-header/>
+      <!--<app-page-header/>-->
+      <div
+        class="pt-4 transition-all duration-300 ease-in-out px-4 relative top-[50px]"
+      >
+        <app-breadcrumb></app-breadcrumb>
+
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+</div>
+

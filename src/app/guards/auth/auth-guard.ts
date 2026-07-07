@@ -30,8 +30,8 @@ const authGuard = async (
 
   const hasRequiredRole = (): boolean => {
     return roles.some((role: string) => requiredRoles.includes(role.toUpperCase()));
-  };
 
+  };
   if (hasRequiredRole()) {
     return true;
   }
@@ -40,6 +40,8 @@ const authGuard = async (
     return router.parseUrl('/admin/dashboard');
   } else if (roles.includes(FrontendRoleEnum.HOSPITAL_ADMIN)) {
     return router.parseUrl('/hospital-admin/dashboard');
+  } else if (roles.includes(FrontendRoleEnum.DOCTOR)) {
+    return router.parseUrl('/doctor-admin');
   }
 
   return router.parseUrl('/forbidden');
