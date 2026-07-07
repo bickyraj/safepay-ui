@@ -1,0 +1,20 @@
+<div class="flex flex-col min-h-screen">
+  <!-- Header -->
+  <div class="flex mb-5 place-content-between">
+    <div class="">
+      <h1 class="text-2xl font-bold text-gray-800 capitalize">Patient Cases</h1>
+      <p class="text-gray-500 mt-1">
+        Select a module to manage hospital resources.
+      </p>
+    </div>
+  </div>
+  <app-mx-table
+    [columns]="columns"
+    [columnNames]="['patient name', 'patient id', 'hospital source']"
+    [dataList]="dataList()"
+    [paginationDetails]="paginationDetails()"
+    (pageChange)="loadPage($event)"
+    (onClickView)="vewCase($event)"
+  />
+</div>
+
