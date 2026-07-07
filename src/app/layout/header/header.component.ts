@@ -3,6 +3,7 @@ import Keycloak from 'keycloak-js';
 import {ResizeService} from '../../services/resize.service';
 import {AuthService} from '../../services/auth/auth.service';
 import {HasRolesDirective} from 'keycloak-angular';
+import {RealmRoleEnum} from '../../utils/RealmRoleEnum';
 
 @Component({
   selector: 'app-header',
@@ -15,10 +16,9 @@ import {HasRolesDirective} from 'keycloak-angular';
 })
 export class HeaderComponent implements AfterViewInit {
 
-  private readonly AuthService = inject(AuthService);
-
-  public readonly userName: string = this.AuthService.getUserName();
-  public readonly businessName: string = this.AuthService.getBusinessName();
+  public readonly authService = inject(AuthService);
+  public readonly userName: string = this.authService.getUserName();
+  public readonly businessName: string = this.authService.getBusinessName();
 
   @ViewChild("headerRef", {static: false}) headerRef!: ElementRef;
 
@@ -39,4 +39,6 @@ export class HeaderComponent implements AfterViewInit {
       redirectUri: window.location.origin
     });
   }
+
+  protected readonly RealmRoleEnum = RealmRoleEnum;
 }

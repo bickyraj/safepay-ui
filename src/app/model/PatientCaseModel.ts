@@ -6,6 +6,7 @@ export class PatientCaseModel {
   name!: string;
   patientId!: string;
   hospitalName!: string;
+  status!: string;
   documents!: PatientCaseDocumentModel[];
   assignedDoctors!: AssignedDoctorModel[];
 }

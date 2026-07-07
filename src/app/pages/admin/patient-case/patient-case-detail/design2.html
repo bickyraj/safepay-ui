@@ -1,0 +1,541 @@
+<div class="min-h-screen bg-slate-100 p-5 space-y-5">
+
+
+  <!-- Top Patient Bar -->
+
+  <div class="rounded border border-slate-200 bg-white p-5">
+
+    <div class="flex flex-col xl:flex-row justify-between gap-5">
+
+
+      <div class="flex items-center gap-5">
+
+        <div
+          class="h-16 w-16 rounded bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center text-white text-2xl font-bold">
+          JD
+        </div>
+
+
+        <div>
+
+          <h1 class="text-2xl font-bold text-slate-800">
+            John Doe
+          </h1>
+
+          <p class="text-sm text-slate-500">
+            Patient ID: PT-10542
+            • MRI Brain
+            • City Care Hospital
+          </p>
+
+
+        </div>
+
+
+      </div>
+
+
+
+      <div class="flex items-center gap-3">
+
+
+                <span
+                  class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700">
+
+                    <span class="h-2 w-2 rounded-full bg-blue-500"></span>
+
+                    Reviewing
+
+                </span>
+
+
+        <button
+          class="rounded border border-slate-200 px-5 py-2.5 font-semibold text-slate-700 hover:bg-slate-50">
+
+          Save Draft
+
+        </button>
+
+
+        <button
+          class="rounded bg-gradient-to-r from-blue-600 to-cyan-500 px-5 py-2.5 font-semibold text-white">
+
+          Complete Case
+
+        </button>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+
+
+
+
+  <!-- Workspace -->
+
+
+  <div class="grid xl:grid-cols-12 gap-5">
+
+
+
+
+
+    <!-- Series Sidebar -->
+
+
+    <div class="xl:col-span-2 rounded border border-slate-200 bg-white p-4">
+
+
+      <h2 class="font-semibold text-slate-800 mb-4">
+        Study Series
+      </h2>
+
+
+
+      <div class="space-y-3">
+
+
+
+        <div
+          class="rounded border border-blue-300 bg-blue-50 p-4">
+
+
+          <p class="font-semibold">
+            Axial T1
+          </p>
+
+          <p class="text-sm text-slate-500">
+            132 Images
+          </p>
+
+
+        </div>
+
+
+
+
+
+        <div class="rounded border border-slate-200 p-4">
+
+          <p class="font-semibold">
+            Axial T2
+          </p>
+
+          <p class="text-sm text-slate-500">
+            118 Images
+          </p>
+
+        </div>
+
+
+
+
+
+        <div class="rounded border border-slate-200 p-4">
+
+          <p class="font-semibold">
+            FLAIR
+          </p>
+
+          <p class="text-sm text-slate-500">
+            94 Images
+          </p>
+
+        </div>
+
+
+
+
+        <div class="rounded border border-slate-200 p-4">
+
+          <p class="font-semibold">
+            DWI
+          </p>
+
+          <p class="text-sm text-slate-500">
+            66 Images
+          </p>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+
+
+
+
+
+    <!-- Viewer Area -->
+
+
+    <div class="xl:col-span-7 rounded border border-slate-800 bg-slate-900 overflow-hidden">
+
+
+      <!-- Viewer Toolbar -->
+
+
+      <div class="border-b border-slate-700 p-4 flex flex-wrap gap-3">
+
+
+        <button
+          class="rounded border border-slate-600 px-4 py-2 text-slate-200 hover:bg-slate-800">
+
+          Zoom
+
+        </button>
+
+
+        <button
+          class="rounded border border-slate-600 px-4 py-2 text-slate-200 hover:bg-slate-800">
+
+          Pan
+
+        </button>
+
+
+        <button
+          class="rounded border border-slate-600 px-4 py-2 text-slate-200 hover:bg-slate-800">
+
+          Measure
+
+        </button>
+
+
+
+        <button
+          class="rounded border border-slate-600 px-4 py-2 text-slate-200 hover:bg-slate-800">
+
+          Window Level
+
+        </button>
+
+
+        <button
+          class="rounded border border-slate-600 px-4 py-2 text-slate-200 hover:bg-slate-800">
+
+          Reset
+
+        </button>
+
+
+      </div>
+
+
+
+
+
+
+      <!-- DICOM Canvas -->
+
+
+      <div class="h-[720px] flex items-center justify-center">
+
+
+        <div class="text-center text-slate-400">
+
+
+          <div class="text-8xl mb-5">
+            🩻
+          </div>
+
+
+          <h2 class="text-xl font-semibold text-slate-200">
+            DICOM Viewer
+          </h2>
+
+
+          <p class="mt-2">
+            MRI Brain Axial T1
+          </p>
+
+
+        </div>
+
+
+      </div>
+
+
+
+
+
+
+      <div
+        class="border-t border-slate-700 px-5 py-3 flex justify-between text-sm text-slate-400">
+
+
+                <span>
+                    Slice 45 / 132
+                </span>
+
+
+        <span>
+                    Window: 400
+                </span>
+
+
+      </div>
+
+
+    </div>
+
+
+
+
+
+
+
+    <!-- Case Control -->
+
+
+    <div class="xl:col-span-3 space-y-5">
+
+
+
+      <!-- Report -->
+
+
+      <div class="rounded border border-slate-200 bg-white p-5">
+
+
+        <h2 class="text-xl font-semibold mb-5">
+          Report
+        </h2>
+
+
+
+        <textarea
+          class="w-full rounded border border-slate-300 p-4 h-40 focus:ring-2 focus:ring-blue-200 outline-none"
+          placeholder="Findings..."></textarea>
+
+
+
+
+        <textarea
+          class="w-full mt-4 rounded border border-slate-300 p-4 h-28 focus:ring-2 focus:ring-blue-200 outline-none"
+          placeholder="Impression..."></textarea>
+
+
+
+        <button
+          class="mt-5 w-full rounded bg-blue-600 py-3 text-white font-semibold">
+
+          Save Report
+
+        </button>
+
+
+      </div>
+
+
+
+
+
+
+
+
+      <!-- Case Status -->
+
+
+      <div class="rounded border border-slate-200 bg-white p-5">
+
+
+        <h2 class="font-semibold mb-5">
+          Case Status
+        </h2>
+
+
+
+        <div class="space-y-4">
+
+
+
+          <div class="flex justify-between">
+
+                        <span class="text-slate-500">
+                            Assignment
+                        </span>
+
+            <span class="font-semibold">
+                            Assigned
+                        </span>
+
+          </div>
+
+
+
+          <div class="flex justify-between">
+
+                        <span class="text-slate-500">
+                            Review
+                        </span>
+
+            <span class="font-semibold text-blue-600">
+                            In Progress
+                        </span>
+
+          </div>
+
+
+
+
+          <div class="flex justify-between">
+
+                        <span class="text-slate-500">
+                            Report
+                        </span>
+
+            <span class="font-semibold text-amber-600">
+                            Draft
+                        </span>
+
+          </div>
+
+
+
+        </div>
+
+
+      </div>
+
+
+
+
+
+
+
+      <!-- Timeline -->
+
+
+      <div class="rounded border border-slate-200 bg-white p-5">
+
+
+        <h2 class="font-semibold mb-5">
+          Activity
+        </h2>
+
+
+        <div class="space-y-4 text-sm">
+
+
+          <p>
+            Case assigned
+            <span class="text-slate-400">
+                            09:30
+                        </span>
+          </p>
+
+
+          <p>
+            Opened DICOM study
+            <span class="text-slate-400">
+                            09:42
+                        </span>
+          </p>
+
+
+          <p>
+            Draft saved
+            <span class="text-slate-400">
+                            10:15
+                        </span>
+          </p>
+
+
+        </div>
+
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+  <!-- Bottom Information -->
+
+
+  <div class="grid lg:grid-cols-4 gap-5">
+
+
+    <div class="rounded border border-slate-200 bg-white p-5">
+
+      <p class="text-sm text-slate-500">
+        Study Size
+      </p>
+
+      <h2 class="text-3xl font-bold">
+        584 MB
+      </h2>
+
+    </div>
+
+
+
+    <div class="rounded border border-slate-200 bg-white p-5">
+
+      <p class="text-sm text-slate-500">
+        Images
+      </p>
+
+      <h2 class="text-3xl font-bold">
+        612
+      </h2>
+
+    </div>
+
+
+
+
+    <div class="rounded border border-slate-200 bg-white p-5">
+
+      <p class="text-sm text-slate-500">
+        Priority
+      </p>
+
+      <h2 class="text-3xl font-bold text-red-600">
+        Urgent
+      </h2>
+
+    </div>
+
+
+
+
+    <div class="rounded border border-slate-200 bg-white p-5">
+
+      <p class="text-sm text-slate-500">
+        Turnaround
+      </p>
+
+      <h2 class="text-3xl font-bold text-blue-600">
+        24 min
+      </h2>
+
+    </div>
+
+
+
+  </div>
+
+
+</div>

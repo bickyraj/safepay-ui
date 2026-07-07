@@ -14,7 +14,7 @@ import {Router} from '@angular/router';
   standalone: true
 })
 export class DoctorPatientCase implements OnInit {
-  public readonly columns: (keyof Partial<PatientCaseModel>)[] = ['name', 'patientId', 'hospitalName'];
+  public readonly columns: (keyof Partial<PatientCaseModel>)[] = ['name', 'patientId', 'hospitalName', 'status'];
   private patientCaseService = inject(PatientCaseService);
   private router = inject(Router);
 
@@ -32,7 +32,7 @@ export class DoctorPatientCase implements OnInit {
   }
 
   vewCase(caseId: any): void {
-    this.router.navigate(['admin/patient-cases/' + caseId])
+    this.router.navigate(['doctor-admin/patient-case/' + caseId])
   }
 
   loadPage(page: number): void {

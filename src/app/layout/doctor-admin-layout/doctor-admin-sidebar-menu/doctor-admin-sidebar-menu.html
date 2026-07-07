@@ -4,7 +4,7 @@
     [ngClass]="{
       'justify-center flex-col': isCollapsed()
     }"
-    routerLink="./"
+    routerLink="dashboard"
     routerLinkActive="bg-sky-50"
   >
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
@@ -19,7 +19,7 @@
 
 <li class="py-1 px-2" *kaHasRoles="['doctor']; checkRealm:true">
   <a
-    routerLink="patient-case"
+    [routerLink]="['patient-case']"
     routerLinkActive="bg-sky-50"
     class="w-full transition-all duration-200 hover:bg-sky-100 font-medium text-sky-900 capitalize flex gap-2 items-center px-3 py-3 rounded-lg"
     [ngClass]="{

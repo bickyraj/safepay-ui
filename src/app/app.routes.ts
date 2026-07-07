@@ -23,6 +23,9 @@ import {AdminPatientCaseDetail} from './pages/admin/patient-case/patient-case-de
 import {DoctorAdmin} from './pages/doctor-admin/doctor-admin';
 import {DoctorAdminLayout} from './layout/doctor-admin-layout/doctor-admin-layout';
 import {DoctorPatientCase} from './pages/doctor-admin/doctor-patient-case/doctor-patient-case';
+import {
+  DoctorPatientCaseDetail
+} from './pages/doctor-admin/doctor-patient-case/doctor-patient-case-detail/doctor-patient-case-detail';
 
 export const routes: Routes = [
   // Public landing page
@@ -98,13 +101,37 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'patient-case',
-        component: DoctorPatientCase,
+        path: 'dashboard',
+        component: DoctorAdmin,
         canActivate: [canActivateAuthRole],
         data: {
           roles: [FrontendRoleEnum.DOCTOR],
-          breadcrumb: 'Patient Case'
+          breadcrumb: 'Dashboard'
         }
+      },
+      {
+        path: 'patient-case',
+        data: { breadcrumb: 'Patient Cases' },
+        children: [
+          {
+            path: '',
+            component: DoctorPatientCase,
+            canActivate: [canActivateAuthRole],
+            data: {
+              roles: [FrontendRoleEnum.DOCTOR],
+              breadcrumb: ''
+            }
+          },
+          {
+            path: ':id',
+            component: DoctorPatientCaseDetail,
+            canActivate: [canActivateAuthRole],
+            data: {
+              roles: [FrontendRoleEnum.DOCTOR],
+              breadcrumb: 'Detail'
+            }
+          }
+        ]
       }
     ]
   },

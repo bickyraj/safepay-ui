@@ -1,0 +1,642 @@
+<div class="min-h-screen bg-slate-50 space-y-6">
+  <!-- Header -->
+  <div class="rounded border border-slate-200 bg-white p-6">
+
+    <div class="flex flex-col xl:flex-row justify-between gap-6">
+
+
+      <div class="flex gap-5">
+
+        <div
+          class="h-16 w-16 rounded bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center text-white text-2xl font-bold">
+          JD
+        </div>
+
+
+        <div>
+
+          <div class="flex items-center gap-3">
+
+            <h1 class="text-xl font-bold text-slate-800">
+              John Doe
+            </h1>
+
+
+            <span
+              class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
+
+                            <span class="h-2 w-2 rounded-full bg-blue-500"></span>
+                            Reviewing
+
+                        </span>
+
+
+          </div>
+
+
+          <p class="text-slate-500 mt-2">
+            Case #PT-10542 • MRI Brain • City Care Hospital
+          </p>
+
+
+        </div>
+
+      </div>
+
+
+
+
+
+      <div class="flex items-center gap-3">
+
+
+        <button
+          class="inline-flex items-center gap-2 rounded border border-slate-200 bg-white px-3.5 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition">
+
+
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+          </svg>
+
+
+
+          Save Draft
+
+        </button>
+
+
+
+        <button
+          class="inline-flex items-center gap-2 rounded bg-gradient-to-r from-blue-600 to-cyan-500 px-4 py-2 text-sm font-semibold text-white hover:opacity-90 transition">
+
+
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z" />
+          </svg>
+
+
+
+          Submit Report
+
+        </button>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+
+
+
+
+
+  <!-- Main Workspace -->
+
+
+  <div class="grid xl:grid-cols-12 gap-6">
+
+
+
+
+
+    <!-- Patient Panel -->
+
+
+    <div class="xl:col-span-3 space-y-6">
+
+
+      <!-- Series -->
+
+
+      <div class="rounded border border-slate-200 bg-white p-5">
+
+
+        <h2 class="font-semibold mb-4">
+          Image Series
+        </h2>
+
+
+
+        <div class="space-y-3">
+
+
+          <div
+            class="rounded border border-blue-300 bg-blue-50 p-4">
+
+            <p class="font-semibold">
+              MRI Axial T1
+            </p>
+
+            <p class="text-sm text-slate-500">
+              132 images
+            </p>
+
+
+          </div>
+
+
+
+          <div class="rounded border border-slate-200 p-4">
+
+            <p class="font-semibold">
+              MRI Axial T2
+            </p>
+
+            <p class="text-sm text-slate-500">
+              118 images
+            </p>
+
+          </div>
+
+
+
+          <div class="rounded border border-slate-200 p-4">
+
+            <p class="font-semibold">
+              FLAIR
+            </p>
+
+            <p class="text-sm text-slate-500">
+              94 images
+            </p>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+
+
+
+      <!-- Previous Reports -->
+
+
+      <div class="rounded border border-slate-200 bg-white p-5">
+
+
+        <h2 class="font-semibold mb-4">
+          Previous Reports
+        </h2>
+
+
+
+        <div class="space-y-3">
+
+
+          <div class="rounded border border-slate-200 p-3">
+
+            <p class="font-semibold">
+              CT Head
+            </p>
+
+            <p class="text-sm text-slate-500">
+              Jan 2025
+            </p>
+
+          </div>
+
+
+
+          <div class="rounded border border-slate-200 p-3">
+
+            <p class="font-semibold">
+              MRI Spine
+            </p>
+
+            <p class="text-sm text-slate-500">
+              Aug 2024
+            </p>
+
+          </div>
+
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- Viewer -->
+
+
+    <div class="xl:col-span-6">
+
+
+      <div
+        class="rounded border border-slate-800 bg-slate-950 overflow-hidden">
+
+
+
+        <!-- Viewer Tools -->
+
+
+        <div class="flex flex-wrap gap-3 border-b border-slate-700 p-4">
+
+
+          <button
+            class="rounded border border-slate-600 px-4 py-2 text-slate-200">
+            Zoom
+          </button>
+
+
+          <button
+            class="rounded border border-slate-600 px-4 py-2 text-slate-200">
+            Pan
+          </button>
+
+
+          <button
+            class="rounded border border-slate-600 px-4 py-2 text-slate-200">
+            Measure
+          </button>
+
+
+          <button
+            class="rounded border border-slate-600 px-4 py-2 text-slate-200">
+            Window
+          </button>
+
+
+          <button
+            class="rounded border border-slate-600 px-4 py-2 text-slate-200">
+            Fullscreen
+          </button>
+
+
+        </div>
+
+
+
+
+
+
+        <!-- Viewer -->
+
+
+        <div
+          class="h-[650px] flex items-center justify-center text-center">
+
+
+          <div>
+
+            <div class="text-8xl">
+              🩻
+            </div>
+
+
+            <h2 class="text-xl text-white font-semibold mt-5">
+              DICOM Viewer
+            </h2>
+
+
+            <p class="text-slate-400 mt-2">
+              MRI Brain / Axial T1
+            </p>
+
+
+          </div>
+
+
+        </div>
+
+
+
+
+
+
+
+        <div
+          class="border-t border-slate-700 px-5 py-3 flex justify-between text-slate-400 text-sm">
+
+
+                    <span>
+                        Slice 45 / 132
+                    </span>
+
+
+          <span>
+                        512 x 512 px
+                    </span>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- Report Workspace -->
+
+
+    <div class="xl:col-span-3 space-y-6">
+
+      <div class="rounded border border-slate-200 bg-white p-5">
+
+
+        <h2 class="font-semibold text-lg mb-5">
+          Patient Summary
+        </h2>
+
+
+
+        <div class="space-y-4">
+
+
+          <div class="flex justify-between">
+
+                        <span class="text-slate-500">
+                            Age
+                        </span>
+
+            <span class="font-semibold">
+                            48
+                        </span>
+
+          </div>
+
+
+
+          <div class="flex justify-between">
+
+                        <span class="text-slate-500">
+                            Gender
+                        </span>
+
+            <span class="font-semibold">
+                            Male
+                        </span>
+
+          </div>
+
+
+
+          <div class="flex justify-between">
+
+                        <span class="text-slate-500">
+                            Study
+                        </span>
+
+            <span class="font-semibold">
+                            MRI Brain
+                        </span>
+
+          </div>
+
+
+
+          <div class="flex justify-between">
+
+                        <span class="text-slate-500">
+                            Images
+                        </span>
+
+            <span class="font-semibold">
+                            612
+                        </span>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+      <div class="rounded border border-slate-200 bg-white p-5">
+
+
+        <h2 class="text-xl font-semibold mb-5">
+          Report
+        </h2>
+
+
+
+        <label class="text-sm font-medium">
+          Findings
+        </label>
+
+
+        <textarea
+          class="mt-2 w-full h-40 rounded border border-slate-300 p-3"
+          placeholder="Describe observations..."></textarea>
+
+
+
+
+        <label class="block mt-5 text-sm font-medium">
+          Impression
+        </label>
+
+
+        <textarea
+          class="mt-2 w-full h-28 rounded border border-slate-300 p-3"
+          placeholder="Final impression..."></textarea>
+
+
+
+
+        <button
+          class="mt-5 w-full rounded bg-blue-600 py-3 text-white font-semibold">
+
+          Save Report
+
+        </button>
+
+
+      </div>
+
+
+
+
+
+
+
+      <!-- Smart Tools -->
+
+
+      <div class="rounded border border-slate-200 bg-white p-5">
+
+
+        <h2 class="font-semibold mb-4">
+          Quick Templates
+        </h2>
+
+
+        <div class="space-y-2">
+
+
+          <button class="w-full rounded border p-3 text-left hover:bg-slate-50">
+            Normal MRI Brain
+          </button>
+
+
+          <button class="w-full rounded border p-3 text-left hover:bg-slate-50">
+            Stroke Template
+          </button>
+
+
+          <button class="w-full rounded border p-3 text-left hover:bg-slate-50">
+            Tumor Evaluation
+          </button>
+
+
+        </div>
+
+
+      </div>
+
+
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+  <!-- Bottom Section -->
+
+
+  <div class="grid lg:grid-cols-3 gap-6">
+
+
+    <div class="rounded border border-slate-200 bg-white p-5">
+
+
+      <h2 class="font-semibold mb-4">
+        Case Timeline
+      </h2>
+
+
+      <p class="text-sm">
+        Assigned
+        <span class="text-slate-400">
+                    09:30
+                </span>
+      </p>
+
+
+      <p class="text-sm mt-3">
+        Opened Study
+        <span class="text-slate-400">
+                    09:42
+                </span>
+      </p>
+
+
+    </div>
+
+
+
+
+
+    <div class="rounded border border-slate-200 bg-white p-5">
+
+
+      <h2 class="font-semibold mb-4">
+        Doctor Notes
+      </h2>
+
+
+      <textarea
+        class="w-full rounded border border-slate-300 p-3"
+        placeholder="Private notes..."></textarea>
+
+
+    </div>
+
+
+
+
+
+
+    <div class="rounded border border-slate-200 bg-white p-5">
+
+
+      <h2 class="font-semibold mb-4">
+        Case Status
+      </h2>
+
+
+      <div class="space-y-3">
+
+
+        <div class="flex justify-between">
+                    <span>
+                        Assignment
+                    </span>
+
+          <span class="text-green-600 font-semibold">
+                        Completed
+                    </span>
+        </div>
+
+
+        <div class="flex justify-between">
+                    <span>
+                        Review
+                    </span>
+
+          <span class="text-blue-600 font-semibold">
+                        Active
+                    </span>
+        </div>
+
+
+        <div class="flex justify-between">
+                    <span>
+                        Report
+                    </span>
+
+          <span class="text-amber-600 font-semibold">
+                        Draft
+                    </span>
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+</div>

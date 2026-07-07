@@ -26,4 +26,8 @@ export class AuthService {
     }
     return "Business Name";
   }
+
+  public hasRole(role: RealmRoleEnum): boolean {
+    return this._keycloak.hasRealmRole(role.toLowerCase());
+  }
 }
