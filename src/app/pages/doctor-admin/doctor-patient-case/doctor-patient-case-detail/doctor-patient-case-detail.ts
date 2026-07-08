@@ -105,6 +105,9 @@ export class DoctorPatientCaseDetail implements OnInit {
           return `http://localhost:8084/api/patient-case/dicom/${dc.s3Key}`
         });
         this.groupImages.set(this.groupByImageIndex(images));
+        const firstKey = Object.keys(this.groupImages())
+          .sort((a, b) => Number(a) - Number(b))[0];
+        this.selectDicomViewerImage(firstKey);
       });
   }
 
