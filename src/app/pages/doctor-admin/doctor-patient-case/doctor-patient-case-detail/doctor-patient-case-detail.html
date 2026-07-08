@@ -1,4 +1,4 @@
-<div class="min-h-screen bg-slate-50 space-y-6">
+<div [formGroup]="reportForm" class="min-h-screen bg-slate-50 space-y-6">
   <!-- Header -->
   <div class="rounded border border-slate-200 bg-white p-6">
 
@@ -401,8 +401,15 @@
 
 
         <textarea
+          formControlName="findings"
           class="mt-2 w-full h-40 rounded border border-slate-300 p-3"
           placeholder="Describe observations..."></textarea>
+        @if (
+          reportForm.controls['findings'].invalid &&
+          reportForm.controls['findings'].dirty
+          ) {
+          <div class="mt-1 text-red-500">This field is required.</div>
+        }
 
 
 
@@ -413,13 +420,21 @@
 
 
         <textarea
+          formControlName="impression"
           class="mt-2 w-full h-28 rounded border border-slate-300 p-3"
           placeholder="Final impression..."></textarea>
+        @if (
+          reportForm.controls['impression'].invalid &&
+          reportForm.controls['impression'].dirty
+          ) {
+          <div class="mt-1 text-red-500">This field is required.</div>
+        }
 
 
 
 
         <button
+          (click)="saveReport()"
           class="mt-5 w-full rounded bg-blue-600 py-3 text-white font-semibold">
 
           Save Report

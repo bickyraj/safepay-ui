@@ -5,6 +5,12 @@ import {PatientCaseModel} from '../../model/PatientCaseModel';
 import {ApiPaginatedResponseDTO} from '../../common/dto/ApiPaginatedResponseDTO';
 import {AssignmentRole} from '../../pages/admin/patient-case/patient-case-detail/admin-patient-case-detail.component';
 
+export interface CaseReportDTO{
+  patientCaseId: number;
+  findings: string;
+  impression: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -102,5 +108,10 @@ export class PatientCaseService {
       patientCaseId: caseId,
       role: role
     });
+  }
+
+  public saveCaseReport(caseReportDTO: CaseReportDTO): Observable<boolean> {
+    const url = new URL("http://localhost:8084/api/patient-case/report");
+    return this.httpClient.post<boolean>(url.toString(), caseReportDTO);
   }
 }

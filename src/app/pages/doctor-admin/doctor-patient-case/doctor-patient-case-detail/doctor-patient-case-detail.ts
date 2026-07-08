@@ -1,5 +1,5 @@
 import {Component, computed, inject, OnInit, signal} from '@angular/core';
-import {PatientCaseService} from '../../../../services/patient-case/patient-case.service';
+import {CaseReportDTO, PatientCaseService} from '../../../../services/patient-case/patient-case.service';
 import {PatientCaseModel} from '../../../../model/PatientCaseModel';
 import {DoctorModel} from '../../../../model/DoctorModel';
 import {DoctorService} from '../../../../services/doctor/doctor.service';
@@ -37,6 +37,8 @@ export class DoctorPatientCaseDetail implements OnInit {
   private isSubmitting: boolean = false;
   public selectedGroupKey = signal<string | null>(null);
 
+  public reportForm: FormGroup;
+
   constructor(private fb: FormBuilder, private route: ActivatedRoute) {
     this.assignForm = new FormGroup({
       doctorId: new FormControl<number | null>(
@@ -48,6 +50,36 @@ export class DoctorPatientCaseDetail implements OnInit {
         null,
         Validators.required
       ),
+    });
+
+    this.reportForm = new FormGroup({
+      findings: new FormControl<string | null>(
+        null,
+        Validators.required
+      ),
+      impression: new FormControl<string | null>(
+        null,
+        Validators.required
+      )
+    });
+  }
+
+  saveReport(): void {
+    if (this.reportForm.invalid) {
+      this.reportForm.markAllAsDirty();
+      return;
+    }
+
+    if (!this.patientCaseId) return;
+
+    const caseReportDTO: CaseReportDTO = {
+      patientCaseId: this.patientCaseId,
+      findings: this.reportForm.get('findings')?.value,
+      impression: this.reportForm.get('impression')?.value
+    };
+
+    firstValueFrom(this.patientCaseService.saveCaseReport(caseReportDTO)).then(status => {
+      this.eventService.emit({ message: 'Your report has been submit successfully.' });
     });
   }
 
