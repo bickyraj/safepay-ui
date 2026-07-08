@@ -9,12 +9,14 @@ import {ActivatedRoute} from '@angular/router';
 import {firstValueFrom} from 'rxjs';
 import {AssignmentRole} from '../../../admin/patient-case/patient-case-detail/admin-patient-case-detail.component';
 import {Modal} from '../../../../common/modal/modal';
+import {DicomViewer} from '../../../../common/dicom-viewer/dicom-viewer.component';
 
 @Component({
   selector: 'app-doctor-patient-case-detail',
   imports: [
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DicomViewer
   ],
   templateUrl: './doctor-patient-case-detail.html',
   styleUrl: './doctor-patient-case-detail.scss',
@@ -97,7 +99,7 @@ export class DoctorPatientCaseDetail implements OnInit {
       .then((data) => {
         this.patientCase.set(data);
         this.imageIds.set(data.documents.map(dc => {
-          return `wadouri:http://localhost:8084/api/patient-case/dicom/${dc.s3Key}`
+          return `http://localhost:8084/api/patient-case/dicom/${dc.s3Key}`
         }));
       });
   }
