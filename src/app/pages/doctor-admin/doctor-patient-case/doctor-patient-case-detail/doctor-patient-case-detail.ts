@@ -9,13 +9,15 @@ import {ActivatedRoute} from '@angular/router';
 import {firstValueFrom} from 'rxjs';
 import {AssignmentRole} from '../../../admin/patient-case/patient-case-detail/admin-patient-case-detail.component';
 import {DicomViewerWrapper} from '../../../../common/diacom-viewer-wrapper/diacom-viewer-wrapper';
+import {KeyValuePipe} from '@angular/common';
 
 @Component({
   selector: 'app-doctor-patient-case-detail',
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    DicomViewerWrapper
+    DicomViewerWrapper,
+    KeyValuePipe
   ],
   templateUrl: './doctor-patient-case-detail.html',
   styleUrl: './doctor-patient-case-detail.scss',
@@ -24,6 +26,7 @@ import {DicomViewerWrapper} from '../../../../common/diacom-viewer-wrapper/diaco
 export class DoctorPatientCaseDetail implements OnInit {
   patientCaseId: number | null = null;
   public imageIds = signal<string[]>([]);
+  public groupImages = signal<Record<string, string[]>>({});
   private patientCaseService = inject(PatientCaseService);
   public patientCase = signal<PatientCaseModel | undefined>(undefined);
   public openModal = signal<boolean>(false);
@@ -97,10 +100,45 @@ export class DoctorPatientCaseDetail implements OnInit {
     firstValueFrom(this.patientCaseService.getPatientCaseDetailWithDocumentsByCaseId(caseId))
       .then((data) => {
         this.patientCase.set(data);
-        this.imageIds.set(data.documents.map(dc => {
+        const images: string[] = data.documents.map(dc => {
           return `http://localhost:8084/api/patient-case/dicom/${dc.s3Key}`
-        }));
+        });
+        this.groupImages.set(this.groupByImageIndex(images));
       });
+  }
+
+  public selectDicomViewerImage(key: any): void {
+    this.imageIds.set(this.sortImages(key));
+  }
+
+  private sortImages(key: any): string[] {
+    return this.groupImages()[key].sort((a, b) => {
+
+      const getSliceNumber = (url: string) => {
+        const match = url.match(/IMG-\d+-(\d+)\.dcm$/);
+        return match ? Number(match[1]) : 0;
+      };
+
+      return getSliceNumber(a) - getSliceNumber(b);
+    });
+  }
+
+  private groupByImageIndex(images: string[]): any {
+    return images.reduce((groups, imageUrl) => {
+      const match = imageUrl.match(/IMG-(\d+)-/);
+
+      if (!match) return groups;
+
+      const seriesKey = match[1];
+
+      if (!groups[seriesKey]) {
+        groups[seriesKey] = [];
+      }
+
+      groups[seriesKey].push(imageUrl);
+
+      return groups;
+    }, {} as Record<string, string[]>);
   }
 
   initial = computed(() =>
