@@ -58,7 +58,7 @@ export class DicomViewerWrapper implements OnInit, OnChanges, OnDestroy {
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
       script.type = 'module';
-      script.src = '/dicom-viewer/dicom-viewer-element.js';
+      script.src = '/assets/dicom-viewer/dicom-viewer-element.js';
       script.onload = () => {
         this.scriptLoaded = true;
         resolve();
