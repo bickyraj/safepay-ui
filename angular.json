@@ -61,11 +61,6 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
-          "options": {
-            "prebundle": {
-              "exclude": ["@cornerstonejs/dicom-image-loader"]
-            }
-          },
           "configurations": {
             "production": {
               "buildTarget": "safepay-ui:build:production"

@@ -8,15 +8,14 @@ import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, V
 import {ActivatedRoute} from '@angular/router';
 import {firstValueFrom} from 'rxjs';
 import {AssignmentRole} from '../../../admin/patient-case/patient-case-detail/admin-patient-case-detail.component';
-import {Modal} from '../../../../common/modal/modal';
-import {DicomViewer} from '../../../../common/dicom-viewer/dicom-viewer.component';
+import {DicomViewerWrapper} from '../../../../common/diacom-viewer-wrapper/diacom-viewer-wrapper';
 
 @Component({
   selector: 'app-doctor-patient-case-detail',
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    DicomViewer
+    DicomViewerWrapper
   ],
   templateUrl: './doctor-patient-case-detail.html',
   styleUrl: './doctor-patient-case-detail.scss',
