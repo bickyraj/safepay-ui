@@ -35,6 +35,7 @@ export class DoctorPatientCaseDetail implements OnInit {
   private eventService = inject(EventService);
   assignForm: FormGroup;
   private isSubmitting: boolean = false;
+  public selectedGroupKey = signal<string | null>(null);
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute) {
     this.assignForm = new FormGroup({
@@ -108,6 +109,7 @@ export class DoctorPatientCaseDetail implements OnInit {
   }
 
   public selectDicomViewerImage(key: any): void {
+    this.selectedGroupKey.set(key);
     this.imageIds.set(this.sortImages(key));
   }
 

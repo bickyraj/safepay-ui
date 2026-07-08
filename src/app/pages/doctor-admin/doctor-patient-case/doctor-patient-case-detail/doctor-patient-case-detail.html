@@ -127,7 +127,12 @@
           @for (groupImage of groupImages() | keyvalue; track groupImage.key) {
             <div
               (click)="selectDicomViewerImage(groupImage.key)"
-              class="rounded border border-gray-300 hover:border-blue-300 hover:bg-blue-50 p-4 cursor-pointer">
+              class="rounded border p-4 cursor-pointer transition-colors"
+              [class.border-blue-500]="selectedGroupKey() === groupImage.key"
+              [class.bg-blue-100]="selectedGroupKey() === groupImage.key"
+              [class.border-gray-300]="selectedGroupKey() !== groupImage.key"
+              [class.hover:border-blue-300]="selectedGroupKey() !== groupImage.key"
+              [class.hover:bg-blue-50]="selectedGroupKey() !== groupImage.key">
 
               <p class="font-semibold">
                 MRI {{ groupImage.key }}
