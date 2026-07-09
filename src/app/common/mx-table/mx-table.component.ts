@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
-import {NgClass} from '@angular/common';
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, Type} from '@angular/core';
+import {NgClass, NgComponentOutlet} from '@angular/common';
 
 export interface PaginationDetails {
   pageNumber: number;
@@ -9,12 +9,18 @@ export interface PaginationDetails {
   hasNext: boolean;
 }
 
+export interface MxSubComponent<T> {
+  component: Type<any>;
+  inputs: Partial<Record<any, keyof T>>;
+}
+
 @Component({
   selector: 'app-mx-table',
   templateUrl: './mx-table.component.html',
   standalone: true,
   imports: [
-    NgClass
+    NgClass,
+    NgComponentOutlet
   ],
   styleUrl: './mx-table.component.css'
 })
@@ -24,6 +30,7 @@ export class MxTableComponent<T extends { id: number | string }> implements OnCh
   @Output() onClickView = new EventEmitter<number>();
   @Input() columns: (keyof Partial<T>)[] = [];
   @Input() columnNames: string[] = [];
+  @Input() components!: Partial<Record<keyof T, MxSubComponent<T>>>;
   public pages: (number | string) [] = [];
   private readonly maxPagesToShow = 2;
 
@@ -47,6 +54,13 @@ export class MxTableComponent<T extends { id: number | string }> implements OnCh
         }
       }
     }
+  }
+
+  public initInput(inputs: Record<string, any>, item: T): Record<string, any> {
+    return Object.entries(inputs).reduce((result, [inputName, itemKey]) => {
+      result[inputName] = item[itemKey as keyof T];
+      return result;
+    }, {} as Record<string, any>);
   }
 
   public paginate(page: number): void {

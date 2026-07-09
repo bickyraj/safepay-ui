@@ -1,7 +1,8 @@
-import {Component, inject, OnInit, signal} from '@angular/core';
+import {Component, inject, OnInit, signal, Type} from '@angular/core';
 import {PatientCaseService} from '../../../services/patient-case/patient-case.service';
-import {MxTableComponent, PaginationDetails} from '../../../common/mx-table/mx-table.component';
+import {MxSubComponent, MxTableComponent, PaginationDetails} from '../../../common/mx-table/mx-table.component';
 import {Router} from '@angular/router';
+import {StatusComponent} from '../../../common/status-component/status-component';
 
 export class TablePatientCaseModel {
   id!: number;
@@ -22,10 +23,11 @@ export class TablePatientCaseModel {
   styleUrl: './admin-patient-case.component.scss',
   standalone: true
 })
-export class AdminPatientCase implements OnInit{
+export class AdminPatientCase implements OnInit {
   public readonly columns: (keyof Partial<TablePatientCaseModel>)[] =
     ['name', 'patientId', 'hospitalName', 'assignedDoctorName', 'reportStatus'];
   private patientCaseService = inject(PatientCaseService);
+  public components!: Partial<Record<keyof TablePatientCaseModel, MxSubComponent<TablePatientCaseModel>>>;
   private router = inject(Router);
 
   public dataList = signal<TablePatientCaseModel[]>([]);
@@ -39,6 +41,14 @@ export class AdminPatientCase implements OnInit{
 
   ngOnInit(): void {
     this.loadPage(1);
+    this.components = {
+      reportStatus: {
+        component: StatusComponent,
+        inputs: {
+          value: 'reportStatus'
+        }
+      }
+    }
   }
 
   vewCase(caseId: any): void {

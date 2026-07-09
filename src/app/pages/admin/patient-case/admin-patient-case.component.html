@@ -10,7 +10,8 @@
   </div>
   <app-mx-table
     [columns]="columns"
-    [columnNames]="['patient name', 'patient id', 'hospital source', 'assigned doctor', 'status']"
+    [columnNames]="['patient name', 'patient id', 'hospital source', 'assigned doctor', 'report status']"
+    [components]="components"
     [dataList]="dataList()"
     [paginationDetails]="paginationDetails()"
     (pageChange)="loadPage($event)"

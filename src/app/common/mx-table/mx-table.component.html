@@ -25,7 +25,13 @@
             @for (column of columns; track column) {
               @if (column !== 'id') {
                 <td class="pt-2 p-4">
-                  <div class="flex text-sm justify-start capitalize">{{ item[column] }}</div>
+                  @if (components[column]; as subComponent) {
+                    <ng-container
+                      *ngComponentOutlet="subComponent['component']; inputs: initInput(subComponent['inputs'], item)">
+                    </ng-container>
+                  } @else {
+                    <div class="flex text-sm justify-start capitalize">{{ item[column] }}</div>
+                  }
                 </td>
               }
             }
