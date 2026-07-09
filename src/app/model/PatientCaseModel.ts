@@ -9,6 +9,12 @@ export class PatientCaseModel {
   status!: string;
   documents!: PatientCaseDocumentModel[];
   assignedDoctors!: AssignedDoctorModel[];
+  report!: PatientCaseReportModel;
+}
+
+export class PatientCaseReportModel {
+  id!: number;
+  status!: string;
 }
 
 export class AssignedDoctorModel {
