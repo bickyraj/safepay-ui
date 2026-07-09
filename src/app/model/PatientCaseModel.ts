@@ -12,11 +12,11 @@ export class PatientCaseModel {
   report!: PatientCaseReportModel;
 
   hasAssignedDoctor(): boolean {
-    return this.assignedDoctors !== null && this.assignedDoctors.length > 0;
+    return this.assignedDoctors !== null && this.assignedDoctors !== undefined && this.assignedDoctors.length > 0;
   }
 
   hasReport(): boolean {
-    return this.report !== null;
+    return this.report !== null && this.report !== undefined;
   }
 }
 

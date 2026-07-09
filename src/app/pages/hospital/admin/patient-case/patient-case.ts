@@ -20,6 +20,7 @@ export class PatientCase implements OnInit{
 
   public readonly columns: (keyof Partial<TablePatientCaseModel>)[] =
     ['name', 'patientId', 'reportStatus'];
+  public readonly columnNames: string[] = ['name', 'patient id', 'report status'];
   public components!: Partial<Record<keyof TablePatientCaseModel, MxSubComponent<TablePatientCaseModel>>>;
   private patientCaseService = inject(PatientCaseService);
 
