@@ -10,6 +10,14 @@ export class PatientCaseModel {
   documents!: PatientCaseDocumentModel[];
   assignedDoctors!: AssignedDoctorModel[];
   report!: PatientCaseReportModel;
+
+  hasAssignedDoctor(): boolean {
+    return this.assignedDoctors !== null;
+  }
+
+  hasReport(): boolean {
+    return this.report !== null;
+  }
 }
 
 export class PatientCaseReportModel {

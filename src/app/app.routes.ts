@@ -16,8 +16,8 @@ import { HospitalDetail } from './pages/hospital/hospital-detail/hospital-detail
 import { Staff } from './pages/hospital/staff/staff';
 import { HospitalAdminLayout } from './layout/hospital-admin-layout/hospital-admin-layout';
 import {HospitalAdminDashboard} from './pages/hospital/admin/hospital-admin-dashboard/hospital-admin-dashboard';
-import {PatientCase} from './pages/patient-case/patient-case';
-import {CreatePatientCase} from './pages/patient-case/create-patient-case/create-patient-case';
+import {PatientCase} from './pages/hospital/admin/patient-case/patient-case';
+import {CreatePatientCase} from './pages/hospital/admin/patient-case/create-patient-case/create-patient-case';
 import {AdminPatientCase} from './pages/admin/patient-case/admin-patient-case.component';
 import {AdminPatientCaseDetail} from './pages/admin/patient-case/patient-case-detail/admin-patient-case-detail.component';
 import {DoctorAdmin} from './pages/doctor-admin/doctor-admin';

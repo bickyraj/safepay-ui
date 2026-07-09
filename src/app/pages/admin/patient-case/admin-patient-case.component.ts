@@ -3,16 +3,7 @@ import {PatientCaseService} from '../../../services/patient-case/patient-case.se
 import {MxSubComponent, MxTableComponent, PaginationDetails} from '../../../common/mx-table/mx-table.component';
 import {Router} from '@angular/router';
 import {StatusComponent} from '../../../common/status-component/status-component';
-
-export class TablePatientCaseModel {
-  id!: number;
-  name!: string;
-  patientId!: string;
-  hospitalName!: string;
-  status!: string;
-  assignedDoctorName!: string;
-  reportStatus!: string;
-}
+import {TablePatientCaseModel} from '../../../model/TablePatientCaseModel';
 
 @Component({
   selector: 'app-patient-case',

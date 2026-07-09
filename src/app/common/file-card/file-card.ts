@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {CaseFile} from '../../pages/patient-case/create-patient-case/create-patient-case';
+import {CaseFile} from '../../pages/hospital/admin/patient-case/create-patient-case/create-patient-case';
 import {DecimalPipe} from '@angular/common';
 
 @Component({

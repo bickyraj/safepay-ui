@@ -1,12 +1,12 @@
 import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
-import { PatientCaseService } from '../../../services/patient-case/patient-case.service';
+import { PatientCaseService } from '../../../../../services/patient-case/patient-case.service';
 import { DecimalPipe } from '@angular/common';
 import {firstValueFrom} from 'rxjs';
 import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {PatientCaseModel} from '../../../model/PatientCaseModel';
-import {EventService} from '../../../services/event/event.service';
-import {FileCard} from '../../../common/file-card/file-card';
+import {PatientCaseModel} from '../../../../../model/PatientCaseModel';
+import {EventService} from '../../../../../services/event/event.service';
+import {FileCard} from '../../../../../common/file-card/file-card';
 
 export interface CaseFile {
   id: string;
