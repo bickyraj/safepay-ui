@@ -1,185 +1,555 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HelixCare HMS</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Teleradiology Landing Page Wireframe</title>
 
   <style>
-    .card {
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+
+    * {
+      box-sizing: border-box;
     }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: white;
+      color: black;
+    }
+
+
+    header,
+    section,
+    footer {
+      border: 2px solid black;
+      margin-bottom: 20px;
+      padding: 20px;
+    }
+
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+
+
+    nav div,
+    button {
+      border: 2px solid black;
+      padding: 10px;
+      background: white;
+    }
+
+
+    .hero {
+      height: 400px;
+    }
+
+
+    .placeholder {
+      border: 2px dashed black;
+      padding: 40px;
+      text-align: center;
+      margin: 15px 0;
+    }
+
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+
+    .card {
+      border: 2px solid black;
+      padding: 20px;
+      min-height: 120px;
+    }
+
+
+    .three-column {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+
+    input,
+    textarea {
+      width: 100%;
+      border: 2px solid black;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+
+    textarea {
+      height: 100px;
+    }
+
+
+    footer {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 15px;
+    }
+
+
+    @media(max-width:800px){
+
+      .grid,
+      .three-column,
+      .two-column,
+      footer {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        display:block;
+      }
+
+      nav {
+        margin-top:20px;
+        flex-wrap:wrap;
+      }
+
+    }
+
   </style>
+
 </head>
 
-<body class="bg-white text-gray-900 font-sans">
 
-<!-- NAV -->
-<header class="flex justify-between items-center px-12 py-6 border-b">
-  <div class="font-bold text-xl text-blue-600">HelixCare</div>
+<body>
 
-  <nav class="hidden md:flex gap-8 text-sm text-gray-600">
-    <a class="hover:text-blue-600">Product</a>
-    <a class="hover:text-blue-600">Solutions</a>
-    <a class="hover:text-blue-600">Security</a>
-    <a class="hover:text-blue-600">Pricing</a>
+
+<header>
+
+  <div class="card">
+    LOGO AREA
+  </div>
+
+  <nav>
+    <div>HOME</div>
+    <div>ABOUT</div>
+    <div>SERVICES</div>
+    <div>PRICING</div>
+    <div>CONTACT</div>
   </nav>
 
-  <button class="px-5 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-500">
-    Request Demo
-  </button>
 </header>
 
-<!-- HERO -->
-<section class="max-w-5xl mx-auto px-6 py-20 text-center">
 
-  <h1 class="text-5xl font-bold leading-tight tracking-tight">
-    Hospital Management, Simplified and Scaled
+
+<section class="hero">
+
+  <h2>HERO / BANNER SECTION</h2>
+
+  <div class="placeholder">
+    IMAGE / MEDICAL VISUAL PLACEHOLDER
+  </div>
+
+  <h1>
+    Fast & Accurate Teleradiology Reporting
   </h1>
 
-  <p class="mt-6 text-gray-600 text-lg max-w-2xl mx-auto">
-    A modern HMS platform that unifies patients, staff, billing, and operations into one secure system.
+  <p>
+    Remote Radiologist Network | 24/7 Reporting | Hospital Solutions
   </p>
 
-  <div class="mt-8 flex justify-center gap-4">
-    <button class="px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-500">
-      Get Started
-    </button>
-    <button class="px-6 py-3 border rounded-xl hover:border-blue-600 hover:text-blue-600">
-      View Documentation
-    </button>
-  </div>
-
-  <!-- trust line -->
-  <div class="mt-10 text-sm text-gray-500 flex justify-center gap-6 flex-wrap">
-    <span>✓ HIPAA-ready architecture</span>
-    <span>✓ Cloud-native</span>
-    <span>✓ Real-time sync</span>
-  </div>
+  <button>
+    REQUEST DEMO
+  </button>
 
 </section>
 
-<!-- FEATURES GRID -->
-<section class="max-w-6xl mx-auto px-6 py-10">
 
-  <div class="grid md:grid-cols-3 gap-8">
 
-    <div class="p-6 rounded-2xl border card">
-      <div class="text-blue-600 text-2xl">●</div>
-      <h3 class="font-semibold mt-4">Unified Patient Records</h3>
-      <p class="text-gray-600 text-sm mt-2">
-        Single source of truth for all medical histories and updates.
-      </p>
+
+<section>
+
+  <h2>TRUST STATISTICS</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      Hospitals Served
     </div>
 
-    <div class="p-6 rounded-2xl border card">
-      <div class="text-blue-600 text-2xl">●</div>
-      <h3 class="font-semibold mt-4">Smart Scheduling Engine</h3>
-      <p class="text-gray-600 text-sm mt-2">
-        Automatically resolves conflicts and optimizes doctor availability.
-      </p>
+    <div class="card">
+      Radiologists
     </div>
 
-    <div class="p-6 rounded-2xl border card">
-      <div class="text-blue-600 text-2xl">●</div>
-      <h3 class="font-semibold mt-4">Billing & Insurance Sync</h3>
-      <p class="text-gray-600 text-sm mt-2">
-        Fast billing workflows with integrated insurance validation.
-      </p>
+    <div class="card">
+      Reports Completed
     </div>
 
-    <div class="p-6 rounded-2xl border card">
-      <div class="text-blue-600 text-2xl">●</div>
-      <h3 class="font-semibold mt-4">Role-Based Access</h3>
-      <p class="text-gray-600 text-sm mt-2">
-        Secure permissions for doctors, nurses, admins, and staff.
-      </p>
-    </div>
-
-    <div class="p-6 rounded-2xl border card">
-      <div class="text-blue-600 text-2xl">●</div>
-      <h3 class="font-semibold mt-4">Emergency Tracking</h3>
-      <p class="text-gray-600 text-sm mt-2">
-        Real-time prioritization for critical care situations.
-      </p>
-    </div>
-
-    <div class="p-6 rounded-2xl border card">
-      <div class="text-blue-600 text-2xl">●</div>
-      <h3 class="font-semibold mt-4">Analytics Dashboard</h3>
-      <p class="text-gray-600 text-sm mt-2">
-        Operational insights across departments and performance.
-      </p>
+    <div class="card">
+      Experience
     </div>
 
   </div>
 
 </section>
 
-<!-- METRICS STRIP -->
-<section class="border-t border-b bg-gray-50">
 
-  <div class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
 
-    <div>
-      <p class="text-3xl font-bold text-blue-600">1.2M+</p>
-      <p class="text-sm text-gray-600">Patients Managed</p>
+
+<section>
+
+  <h2>ABOUT US</h2>
+
+  <div class="two-column">
+
+    <div class="card">
+      Company Description Area
     </div>
 
-    <div>
-      <p class="text-3xl font-bold text-blue-600">850+</p>
-      <p class="text-sm text-gray-600">Hospitals</p>
-    </div>
-
-    <div>
-      <p class="text-3xl font-bold text-blue-600">99.98%</p>
-      <p class="text-sm text-gray-600">Uptime</p>
-    </div>
-
-    <div>
-      <p class="text-3xl font-bold text-blue-600">24/7</p>
-      <p class="text-sm text-gray-600">Support</p>
+    <div class="placeholder">
+      IMAGE AREA
     </div>
 
   </div>
 
 </section>
 
-<!-- VALUE SECTION -->
-<section class="max-w-5xl mx-auto px-6 py-20 text-center">
 
-  <h2 class="text-3xl font-bold">Built for Modern Healthcare Systems</h2>
 
-  <p class="mt-4 text-gray-600">
-    Designed to reduce administrative overload and improve patient outcomes through clean workflows.
-  </p>
 
-</section>
+<section>
 
-<!-- CTA -->
-<section class="max-w-5xl mx-auto px-6 py-16 text-center">
+  <h2>OUR SERVICES</h2>
 
-  <div class="border rounded-2xl p-10 card">
+  <div class="grid">
 
-    <h3 class="text-2xl font-bold">Start using HelixCare HMS today</h3>
+    <div class="card">
+      CT Scan Reporting
+    </div>
 
-    <p class="text-gray-600 mt-3">
-      Deploy in minutes. Scale across hospitals without friction.
-    </p>
+    <div class="card">
+      MRI Reporting
+    </div>
 
-    <button class="mt-6 px-7 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-500">
-      Request Access
-    </button>
+    <div class="card">
+      X-Ray Reporting
+    </div>
+
+    <div class="card">
+      Ultrasound Reporting
+    </div>
 
   </div>
 
 </section>
 
-<!-- FOOTER -->
-<footer class="border-t py-10 text-center text-sm text-gray-500">
-  © 2026 HelixCare HMS. All rights reserved.
+
+
+
+<section>
+
+  <h2>HOW IT WORKS</h2>
+
+  <div class="three-column">
+
+    <div class="card">
+      STEP 1
+      <br><br>
+      Upload Images
+    </div>
+
+
+    <div class="card">
+      STEP 2
+      <br><br>
+      Radiologist Review
+    </div>
+
+
+    <div class="card">
+      STEP 3
+      <br><br>
+      Receive Report
+    </div>
+
+  </div>
+
+</section>
+
+
+
+
+<section>
+
+  <h2>OUR RADIOLOGISTS</h2>
+
+  <div class="three-column">
+
+    <div class="card">
+      Doctor Profile
+    </div>
+
+    <div class="card">
+      Doctor Profile
+    </div>
+
+    <div class="card">
+      Doctor Profile
+    </div>
+
+  </div>
+
+</section>
+
+
+
+
+
+<section>
+
+  <h2>PRICING PLANS</h2>
+
+
+  <div class="three-column">
+
+
+    <div class="card">
+
+      <h3>
+        BASIC PLAN
+      </h3>
+
+      <p>
+        Price Area
+      </p>
+
+      <p>
+        X-Ray Reports
+        <br>
+        Basic Support
+      </p>
+
+      <button>
+        SELECT
+      </button>
+
+    </div>
+
+
+
+    <div class="card">
+
+      <h3>
+        PRO PLAN
+      </h3>
+
+      <p>
+        Price Area
+      </p>
+
+      <p>
+        MRI + CT Reports
+        <br>
+        Priority Support
+      </p>
+
+      <button>
+        SELECT
+      </button>
+
+    </div>
+
+
+
+
+    <div class="card">
+
+      <h3>
+        ENTERPRISE
+      </h3>
+
+      <p>
+        Custom Pricing
+      </p>
+
+      <p>
+        Hospital Integration
+        <br>
+        Dedicated Team
+      </p>
+
+      <button>
+        CONTACT
+      </button>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+
+
+<section>
+
+  <h2>
+    TECHNOLOGY FEATURES
+  </h2>
+
+
+  <div class="grid">
+
+    <div class="card">
+      PACS Integration
+    </div>
+
+    <div class="card">
+      Cloud Platform
+    </div>
+
+    <div class="card">
+      AI Assistance
+    </div>
+
+    <div class="card">
+      Secure Transfer
+    </div>
+
+  </div>
+
+
+</section>
+
+
+
+
+
+<section>
+
+  <h2>
+    TESTIMONIALS
+  </h2>
+
+
+  <div class="two-column">
+
+    <div class="card">
+      Hospital Feedback
+    </div>
+
+    <div class="card">
+      Doctor Feedback
+    </div>
+
+  </div>
+
+
+</section>
+
+
+
+
+
+<section>
+
+  <h2>
+    FAQ
+  </h2>
+
+
+  <div class="card">
+    Question 1
+  </div>
+
+  <br>
+
+  <div class="card">
+    Question 2
+  </div>
+
+  <br>
+
+  <div class="card">
+    Question 3
+  </div>
+
+
+</section>
+
+
+
+
+
+<section>
+
+  <h2>
+    CONTACT / REQUEST DEMO
+  </h2>
+
+
+  <input placeholder="Name">
+
+  <input placeholder="Email">
+
+  <input placeholder="Hospital Name">
+
+  <textarea placeholder="Message"></textarea>
+
+
+  <button>
+    SEND REQUEST
+  </button>
+
+
+</section>
+
+
+
+
+
+<footer>
+
+
+  <div class="card">
+    LOGO
+  </div>
+
+
+  <div class="card">
+    Quick Links
+  </div>
+
+
+  <div class="card">
+    Services
+  </div>
+
+
+  <div class="card">
+    Contact
+  </div>
+
+
 </footer>
+
+
 
 </body>
 </html>

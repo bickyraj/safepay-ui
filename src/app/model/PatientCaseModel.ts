@@ -12,7 +12,7 @@ export class PatientCaseModel {
   report!: PatientCaseReportModel;
 
   hasAssignedDoctor(): boolean {
-    return this.assignedDoctors !== null;
+    return this.assignedDoctors !== null && this.assignedDoctors.length > 0;
   }
 
   hasReport(): boolean {

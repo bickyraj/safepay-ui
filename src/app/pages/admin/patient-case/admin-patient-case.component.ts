@@ -55,8 +55,9 @@ export class AdminPatientCase implements OnInit {
           patientId: pm.patientId,
           hospitalName: pm.hospitalName,
           status: pm.status,
-          assignedDoctorName: pm.assignedDoctors[0].doctor.firstName + " " + pm.assignedDoctors[0].doctor.lastName,
-          reportStatus: pm.report.status
+          assignedDoctorName: pm.hasAssignedDoctor() ?
+            "Dr. " + pm.assignedDoctors[0].doctor.firstName + " " + pm.assignedDoctors[0].doctor.lastName : '--',
+          reportStatus: pm.hasReport() ? pm.report.status: ''
         }
       }));
       this.paginationDetails.set(response);
