@@ -1,5 +1,5 @@
 import {Component, inject, OnInit, signal} from '@angular/core';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {MxSubComponent, MxTableComponent, PaginationDetails} from '../../../../common/mx-table/mx-table.component';
 import {PatientCaseModel} from '../../../../model/PatientCaseModel';
 import {PatientCaseService} from '../../../../services/patient-case/patient-case.service';
@@ -31,6 +31,11 @@ export class PatientCase implements OnInit{
     totalPages: 0,
     hasNext: false
   });
+  private router = inject(Router);
+
+  vewCase(caseId: any): void {
+    this.router.navigate(['hospital-admin/cases/' + caseId])
+  }
 
   ngOnInit(): void {
     this.loadPage(1);

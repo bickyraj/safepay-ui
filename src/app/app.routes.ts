@@ -26,6 +26,9 @@ import {DoctorPatientCase} from './pages/doctor-admin/doctor-patient-case/doctor
 import {
   DoctorPatientCaseDetail
 } from './pages/doctor-admin/doctor-patient-case/doctor-patient-case-detail/doctor-patient-case-detail';
+import {
+  HospitalPatientCaseDetailComponent
+} from './pages/hospital/admin/patient-case/hospital-patient-case-detail-component/hospital-patient-case-detail-component';
 
 export const routes: Routes = [
   // Public landing page
@@ -41,6 +44,9 @@ export const routes: Routes = [
   {
     path: 'hospital-admin',
     component: HospitalAdminLayout,
+    data: {
+      breadcrumb: 'Hospital'
+    },
     children: [
       {
         path: '',
@@ -49,7 +55,7 @@ export const routes: Routes = [
         data: {
           roles: [FrontendRoleEnum.HOSPITAL_ADMIN],
           breadcrumb: 'Dashboard'
-        }
+        },
       },
       {
         path: 'dashboard',
@@ -62,7 +68,9 @@ export const routes: Routes = [
       },
       {
         path: 'cases',
-        data: { breadcrumb: 'Patient Cases' },
+        data: {
+          breadcrumb: 'Patient Cases'
+        },
         children: [
           {
             path: '',
@@ -70,7 +78,7 @@ export const routes: Routes = [
             canActivate: [canActivateAuthRole],
             data: {
               roles: [FrontendRoleEnum.HOSPITAL_ADMIN],
-              breadcrumb: 'Patient Cases'
+              breadcrumb: ''
             }
           },
           {
@@ -80,6 +88,15 @@ export const routes: Routes = [
             data: {
               roles: [FrontendRoleEnum.HOSPITAL_ADMIN],
               breadcrumb: 'Add Patient Case'
+            }
+          },
+          {
+            path: ':id',
+            component: HospitalPatientCaseDetailComponent,
+            canActivate: [canActivateAuthRole],
+            data: {
+              roles: [FrontendRoleEnum.HOSPITAL_ADMIN],
+              breadcrumb: 'Detail'
             }
           }
         ]
@@ -139,6 +156,9 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent,
+    data: {
+      breadcrumb: 'Admin'
+    },
     children: [
       {
         path: 'dashboard',
@@ -197,23 +217,32 @@ export const routes: Routes = [
           },
           {
             path: ':id',
-            component: HospitalDetail,
-            canActivate: [canActivateAuthRole],
             data: {
               roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
               breadcrumb: 'Hospital Detail'
-            }
+            },
+            children: [
+              {
+                path: '',
+                component: HospitalDetail,
+                canActivate: [canActivateAuthRole],
+                data: {
+                  roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
+                  breadcrumb: ''
+                }
+              },
+              {
+                path: 'staff',
+                component: Staff,
+                canActivate: [canActivateAuthRole],
+                data: {
+                  roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
+                  breadcrumb: 'Staff'
+                }
+              }
+            ]
           }
         ]
-      },
-      {
-        path: 'hospital/:id/staff',
-        component: Staff,
-        canActivate: [canActivateAuthRole],
-        data: {
-          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
-          breadcrumb: 'Staff'
-        }
       },
       {
         path: 'doctors',
