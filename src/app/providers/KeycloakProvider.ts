@@ -5,7 +5,7 @@ export const provideKeycloakAngular = (): EnvironmentProviders => {
   return provideKeycloak({
     config: {
       url: 'http://localhost:8082',
-      realm: 'safepay',
+      realm: 'hms',
       clientId: 'hms-frontend',
     },
     initOptions: {
