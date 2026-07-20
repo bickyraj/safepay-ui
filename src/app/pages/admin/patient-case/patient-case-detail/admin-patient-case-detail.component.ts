@@ -9,6 +9,7 @@ import {DoctorService} from '../../../../services/doctor/doctor.service';
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {EventService} from '../../../../services/event/event.service';
 import {NotificationModel} from '../../../../model/NotificationModel';
+import {environment} from '../../../../../environments/environment';
 
 export enum AssignmentRole {
   PRIMARY = 'PRIMARY',
@@ -39,6 +40,7 @@ export class AdminPatientCaseDetail implements OnInit {
   private eventService = inject(EventService);
   assignForm: FormGroup;
   private isSubmitting: boolean = false;
+  private apiUrl = environment.apiUrl;
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute) {
     this.assignForm = new FormGroup({
@@ -105,7 +107,7 @@ export class AdminPatientCaseDetail implements OnInit {
        .then((data) => {
          this.patientCase.set(data);
          this.imageIds.set(data.documents.map(dc => {
-           return `wadouri:http://localhost:8084/api/patient-case/dicom/${dc.s3Key}`
+           return `wadouri:${this.apiUrl}/patient-case/dicom/${dc.s3Key}`
          }));
        });
   }

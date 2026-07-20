@@ -1,10 +1,13 @@
 import {AutoRefreshTokenService, provideKeycloak, UserActivityService, withAutoRefreshToken} from 'keycloak-angular';
 import {EnvironmentProviders} from '@angular/core';
+import {environment} from '../../environments/environment';
 
 export const provideKeycloakAngular = (): EnvironmentProviders => {
+  const keycloakUrl = environment.keycloakUrl;
+
   return provideKeycloak({
     config: {
-      url: 'http://localhost:8082',
+      url: keycloakUrl,
       realm: 'hms',
       clientId: 'hms-frontend',
     },

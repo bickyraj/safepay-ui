@@ -10,6 +10,7 @@ import {firstValueFrom} from 'rxjs';
 import {AssignmentRole} from '../../../admin/patient-case/patient-case-detail/admin-patient-case-detail.component';
 import {DicomViewerWrapper} from '../../../../common/diacom-viewer-wrapper/diacom-viewer-wrapper';
 import {KeyValuePipe} from '@angular/common';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-doctor-patient-case-detail',
@@ -36,6 +37,7 @@ export class DoctorPatientCaseDetail implements OnInit {
   assignForm: FormGroup;
   private isSubmitting: boolean = false;
   public selectedGroupKey = signal<string | null>(null);
+  private apiUrl = environment.apiUrl;
 
   public reportForm: FormGroup;
 
@@ -134,7 +136,7 @@ export class DoctorPatientCaseDetail implements OnInit {
       .then((data) => {
         this.patientCase.set(data);
         const images: string[] = data.documents.map(dc => {
-          return `http://localhost:8084/api/patient-case/dicom/${dc.s3Key}`
+          return `${this.apiUrl}/patient-case/dicom/${dc.s3Key}`
         });
         this.groupImages.set(this.groupByImageIndex(images));
         const firstKey = Object.keys(this.groupImages())

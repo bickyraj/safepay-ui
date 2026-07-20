@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {PatientCaseModel} from '../../model/PatientCaseModel';
 import {ApiPaginatedResponseDTO} from '../../common/dto/ApiPaginatedResponseDTO';
 import {AssignmentRole} from '../../pages/admin/patient-case/patient-case-detail/admin-patient-case-detail.component';
+import { environment } from '../../../environments/environment';
 
 export interface CaseReportDTO{
   patientCaseId: number;
@@ -16,15 +17,16 @@ export interface CaseReportDTO{
 })
 export class PatientCaseService {
   private readonly httpClient = inject(HttpClient);
+  private apiUrl = environment.apiUrl;
 
   public createPatientCase(patientCase: PatientCaseModel): Observable<number> {
-    const url = new URL("http://localhost:8084/api/patient-case/create");
+    const url = new URL(`${this.apiUrl}/patient-case/create`);
     return this.httpClient.post<number>(url.toString(), patientCase);
   }
 
   async uploadFileInChunks(file: File, caseId: number, progress: WritableSignal<number>): Promise<void> {
-    // const CHUNK_SIZE = 5 * 1024 * 1024; // 5MB per chunk
-    const CHUNK_SIZE = 20 * 1024;
+    // const CHUNK_SIZE = 1024 * 1024; // 5MB per chunk
+    const CHUNK_SIZE = 500 * 1024;
     const totalChunks = Math.ceil(file.size / CHUNK_SIZE);
     const uploadId = crypto.randomUUID();
 
@@ -41,7 +43,7 @@ export class PatientCaseService {
       formData.append('fileName', file.name);
 
       await firstValueFrom(
-        this.httpClient.post(`http://localhost:8084/api/patient-case/${caseId}/documents/upload-chunk`, formData)
+        this.httpClient.post(`${this.apiUrl}/patient-case/${caseId}/documents/upload-chunk`, formData)
       );
 
       const percent = Math.round(((chunkIndex + 1) / totalChunks) * 100);
@@ -50,7 +52,7 @@ export class PatientCaseService {
 
     // all chunks uploaded — tell backend to merge them
     await firstValueFrom(
-      this.httpClient.post<boolean>(`http://localhost:8084/api/patient-case/${caseId}/documents/complete-upload`, {
+      this.httpClient.post<boolean>(`${this.apiUrl}/patient-case/${caseId}/documents/complete-upload`, {
         uploadId,
         fileName: file.name,
         contentType: file.type,
@@ -61,7 +63,7 @@ export class PatientCaseService {
   }
 
   public getList(): Observable<ApiPaginatedResponseDTO<PatientCaseModel>> {
-    const url = new URL("http://localhost:8084/api/patient-case/all");
+    const url = new URL(`${this.apiUrl}/patient-case/all`);
     return this.httpClient.get<ApiPaginatedResponseDTO<PatientCaseModel>>(url.toString())
       .pipe(
         map(response => ({
@@ -72,7 +74,7 @@ export class PatientCaseService {
   }
 
   public getAllPatientCasesList(): Observable<ApiPaginatedResponseDTO<PatientCaseModel>> {
-    const url = new URL("http://localhost:8084/api/patient-case/all-cases");
+    const url = new URL(`${this.apiUrl}/patient-case/all-cases`);
     return this.httpClient.get<ApiPaginatedResponseDTO<PatientCaseModel>>(url.toString())
       .pipe(
         map(response => ({
@@ -83,7 +85,7 @@ export class PatientCaseService {
   }
 
   public getAllPatientCasesListByDoctor(): Observable<ApiPaginatedResponseDTO<PatientCaseModel>> {
-    const url = new URL("http://localhost:8084/api/doctor/patient-cases");
+    const url = new URL(`${this.apiUrl}/doctor/patient-cases`);
     return this.httpClient.get<ApiPaginatedResponseDTO<PatientCaseModel>>(url.toString())
       .pipe(
         map(response => ({
@@ -94,7 +96,7 @@ export class PatientCaseService {
   }
 
   public getPatientCaseDetailWithDocumentsByCaseId(caseId: number): Observable<PatientCaseModel> {
-    const url = new URL("http://localhost:8084/api/patient-case/" + caseId);
+    const url = new URL(`${this.apiUrl}/patient-case/` + caseId);
     return this.httpClient.get<PatientCaseModel>(url.toString())
       .pipe(
         map(response => Object.assign(new PatientCaseModel(), response))
@@ -102,7 +104,7 @@ export class PatientCaseService {
   }
 
   public assignDoctorToCase(doctorId: number, caseId: number, role: AssignmentRole): Observable<boolean> {
-    const url = new URL("http://localhost:8084/api/patient-case/assign-case");
+    const url = new URL(`${this.apiUrl}/patient-case/assign-case`);
     return this.httpClient.post<boolean>(url.toString(), {
       doctorId: doctorId,
       patientCaseId: caseId,
@@ -111,7 +113,7 @@ export class PatientCaseService {
   }
 
   public saveCaseReport(caseReportDTO: CaseReportDTO): Observable<boolean> {
-    const url = new URL("http://localhost:8084/api/patient-case/report");
+    const url = new URL(`${this.apiUrl}/patient-case/report`);
     return this.httpClient.post<boolean>(url.toString(), caseReportDTO);
   }
 }

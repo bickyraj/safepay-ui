@@ -10,9 +10,11 @@ import {
 } from 'keycloak-angular';
 import {provideHttpClient, withInterceptors} from '@angular/common/http';
 import {provideKeycloakAngular} from './providers/KeycloakProvider';
+import {environment} from '../environments/environment';
 
+const apiUrl = environment.apiUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const urlCondition = createInterceptorCondition<IncludeBearerTokenCondition>({
-  urlPattern: /^(http:\/\/localhost:8084)(\/.*)?$/i,
+  urlPattern: new RegExp(`^${apiUrl}(/.*)?$`, 'i'),
   bearerPrefix: 'Bearer'
 });
 
