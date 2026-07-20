@@ -25,8 +25,8 @@ export class PatientCaseService {
   }
 
   async uploadFileInChunks(file: File, caseId: number, progress: WritableSignal<number>): Promise<void> {
-    // const CHUNK_SIZE = 1024 * 1024; // 5MB per chunk
-    const CHUNK_SIZE = 500 * 1024;
+    const CHUNK_SIZE = 5 * 1024 * 1024; // 5MB per chunk
+    // const CHUNK_SIZE = 500 * 1024;
     const totalChunks = Math.ceil(file.size / CHUNK_SIZE);
     const uploadId = crypto.randomUUID();
 
