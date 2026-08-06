@@ -84,7 +84,7 @@ export class CreatePatientCase {
     for (const caseFile of this.caseFiles()) {
       await this.patientCaseService.uploadFileInChunks(caseFile.file, caseId, caseFile.progress);
     }
-    this.eventService.emit({ message: 'Patient case uploaded successfully.' });
+    this.eventService.emitNotification({ message: 'Patient case uploaded successfully.' });
     this.router.navigate(['/hospital-admin/cases']);
   }
 }

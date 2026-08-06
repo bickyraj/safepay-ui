@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Subject, Subscription} from 'rxjs';
+import {Subject} from 'rxjs';
 import {NotificationModel} from '../../model/NotificationModel';
 
 @Injectable({
@@ -9,7 +9,7 @@ export class EventService {
   private notificationSubject = new Subject<NotificationModel>();
   notification$ = this.notificationSubject.asObservable();
 
-  emit(notification: NotificationModel) {
+  emitNotification(notification: NotificationModel) {
     this.notificationSubject.next(notification);
   }
 }

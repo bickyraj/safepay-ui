@@ -81,7 +81,7 @@ export class DoctorPatientCaseDetail implements OnInit {
     };
 
     firstValueFrom(this.patientCaseService.saveCaseReport(caseReportDTO)).then(status => {
-      this.eventService.emit({ message: 'Your report has been submit successfully.' });
+      this.eventService.emitNotification({ message: 'Your report has been submit successfully.' });
     });
   }
 
@@ -121,7 +121,7 @@ export class DoctorPatientCaseDetail implements OnInit {
         if (!this.patientCaseId) return;
         this.fetchPatientCaseDetails(this.patientCaseId);
         this.close();
-        this.eventService.emit({ message: 'Patient Case has been assigned to the doctor.' });
+        this.eventService.emitNotification({ message: 'Patient Case has been assigned to the doctor.' });
       }
       this.isSubmitting = false;
     });

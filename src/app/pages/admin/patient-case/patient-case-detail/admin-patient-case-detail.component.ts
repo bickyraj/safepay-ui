@@ -8,7 +8,6 @@ import {DoctorModel} from '../../../../model/DoctorModel';
 import {DoctorService} from '../../../../services/doctor/doctor.service';
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {EventService} from '../../../../services/event/event.service';
-import {NotificationModel} from '../../../../model/NotificationModel';
 import {environment} from '../../../../../environments/environment';
 
 export enum AssignmentRole {
@@ -92,7 +91,7 @@ export class AdminPatientCaseDetail implements OnInit {
         if (!this.patientCaseId) return;
         this.fetchPatientCaseDetails(this.patientCaseId);
         this.close();
-        this.eventService.emit({ message: 'Patient Case has been assigned to the doctor.' });
+        this.eventService.emitNotification({ message: 'Patient Case has been assigned to the doctor.' });
       }
       this.isSubmitting = false;
     });

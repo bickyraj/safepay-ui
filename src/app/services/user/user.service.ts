@@ -1,9 +1,19 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {map, Observable} from 'rxjs';
+import {map, Observable, of} from 'rxjs';
 import {ApiPaginatedResponseDTO} from '../../common/dto/ApiPaginatedResponseDTO';
 import {UserModel} from '../../model/UserModel';
 import { environment } from '../../../environments/environment';
+import {ApiResponseDTO} from '../../common/dto/ApiResponseDTO';
+
+
+export interface CreateUserDTO {
+  firstName: string;
+  lastName?: string;
+  email: string;
+  phone?: string;
+  username: string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -22,5 +32,12 @@ export class UserService {
           content: response.content.map(d => Object.assign(new UserModel(), d))
         }))
       );
+  }
+
+  public createUser(createUserDTO: CreateUserDTO): Observable<boolean> {
+    const url = new URL(`${this.apiUrl}/user/create`);
+    return this.httpClient.post<ApiResponseDTO<[]>>(url.toString(), createUserDTO).pipe(
+      map(response => response.status || false)
+    );
   }
 }

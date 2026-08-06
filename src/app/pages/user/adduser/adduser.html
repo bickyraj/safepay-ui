@@ -21,7 +21,7 @@
 
   <!-- Form Card -->
 
-  <div class="max-w-4xl rounded border border-slate-200 bg-white p-8">
+  <form [formGroup]="userForm" class="max-w-4xl rounded border border-slate-200 bg-white p-8">
 
 
     <!-- Header -->
@@ -88,11 +88,17 @@
 
 
         <input
+          formControlName="firstName"
           type="text"
           placeholder="Enter first name"
           class="h-10 w-full rounded border border-slate-300 px-3 text-sm outline-none transition focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
 
-
+        @if (
+          userForm.controls['firstName'].hasError('required') &&
+          userForm.controls['firstName'].dirty
+          ) {
+          <div class="mt-1 text-red-500">This field is required.</div>
+        }
       </div>
 
 
@@ -109,6 +115,7 @@
 
 
         <input
+          formControlName="lastName"
           type="text"
           placeholder="Enter last name"
           class="h-10 w-full rounded border border-slate-300 px-3 text-sm outline-none transition focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
@@ -133,11 +140,23 @@
 
 
         <input
+          formControlName="username"
           type="text"
           placeholder="Enter username"
           class="h-10 w-full rounded border border-slate-300 px-3 text-sm outline-none transition focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
 
-
+        @if (
+          userForm.controls['username'].hasError('required') &&
+          userForm.controls['username'].dirty
+          ) {
+          <div class="mt-1 text-red-500">This field is required.</div>
+        }
+        @if (
+          userForm.controls['username'].hasError('username') &&
+          userForm.controls['username'].dirty
+          ) {
+          <div class="mt-1 text-red-500">Please enter valid username.</div>
+        }
       </div>
 
 
@@ -156,11 +175,24 @@
 
 
         <input
+          formControlName="email"
           type="email"
           placeholder="example@hospital.com"
           class="h-10 w-full rounded border border-slate-300 px-3 text-sm outline-none transition focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
 
 
+        @if (
+          userForm.controls['email'].hasError('required') &&
+          userForm.controls['email'].dirty
+          ) {
+          <div class="mt-1 text-red-500">This field is required.</div>
+        }
+        @if (
+          userForm.controls['email'].hasError('email') &&
+          userForm.controls['email'].dirty
+          ) {
+          <div class="mt-1 text-red-500">Invalid email.</div>
+        }
       </div>
 
 
@@ -180,57 +212,12 @@
 
 
         <input
+          formControlName="phone"
           type="text"
           placeholder="+49 123 456789"
           class="h-10 w-full rounded border border-slate-300 px-3 text-sm outline-none transition focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
 
-
       </div>
-
-
-
-
-
-
-
-
-      <!-- Role -->
-
-
-      <div>
-
-        <label class="mb-2 block text-sm font-medium text-slate-700">
-          User Role
-        </label>
-
-
-        <select
-          class="h-10 w-full rounded border border-slate-300 px-3 text-sm outline-none transition focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
-
-
-          <option>
-            Select role
-          </option>
-
-          <option>
-            Hospital Admin
-          </option>
-
-          <option>
-            Radiologist Doctor
-          </option>
-
-          <option>
-            Doctor Admin
-          </option>
-
-
-        </select>
-
-
-      </div>
-
-
     </div>
 
 
@@ -243,7 +230,7 @@
     <!-- Account Status -->
 
 
-    <div class="mt-8 rounded border border-slate-200 bg-slate-50 p-5">
+    <!--<div class="mt-8 rounded border border-slate-200 bg-slate-50 p-5">
 
 
       <div class="flex items-center justify-between">
@@ -293,7 +280,7 @@
       </div>
 
 
-    </div>
+    </div>-->
 
 
 
@@ -310,6 +297,7 @@
 
 
       <button
+        routerLink="/admin/users"
         class="h-9 rounded border border-slate-200 px-4 text-sm font-medium text-slate-700 hover:bg-slate-50">
 
         Cancel
@@ -321,6 +309,7 @@
 
 
       <button
+        (click)="submitUser()"
         class="inline-flex h-9 items-center gap-2 rounded bg-gradient-to-r from-blue-600 to-cyan-500 px-5 text-sm font-semibold text-white hover:opacity-90">
 
 
@@ -333,7 +322,7 @@
     </div>
 
 
-  </div>
+  </form>
 
 
 </div>
