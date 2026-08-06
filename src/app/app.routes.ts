@@ -29,6 +29,7 @@ import {
 import {
   HospitalPatientCaseDetailComponent
 } from './pages/hospital/admin/patient-case/hospital-patient-case-detail-component/hospital-patient-case-detail-component';
+import {Adduser} from './pages/user/adduser/adduser';
 
 export const routes: Routes = [
   // Public landing page
@@ -255,12 +256,27 @@ export const routes: Routes = [
       },
       {
         path: 'users',
-        component: User,
-        canActivate: [canActivateAuthRole],
-        data: {
-          roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
-          breadcrumb: 'Users'
-        }
+        data: { breadcrumb: 'Users' },
+        children: [
+          {
+            path: '',
+            component: User,
+            canActivate: [canActivateAuthRole],
+            data: {
+              roles: [FrontendRoleEnum.SUPERADMIN],
+              breadcrumb: ''
+            }
+          },
+          {
+            path: 'add',
+            component: Adduser,
+            canActivate: [canActivateAuthRole],
+            data: {
+              roles: [FrontendRoleEnum.SUPERADMIN],
+              breadcrumb: 'Add User'
+            }
+          },
+        ]
       },
       {
         path: 'ai',

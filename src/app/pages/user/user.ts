@@ -3,6 +3,7 @@ import {MxTableComponent, PaginationDetails} from '../../common/mx-table/mx-tabl
 import {Subject} from 'rxjs';
 import {UserService} from '../../services/user/user.service';
 import {UserModel} from '../../model/UserModel';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -15,6 +16,7 @@ import {UserModel} from '../../model/UserModel';
 })
 export class User implements OnInit, OnDestroy {
 
+  private readonly router = inject(Router);
   private readonly  userService = inject(UserService);
   public readonly columns: (keyof Partial<UserModel>)[] = ['id', 'name'];
   public dataList = signal<UserModel[]>([]);
@@ -37,6 +39,10 @@ export class User implements OnInit, OnDestroy {
       this.dataList.set(response.content);
       this.paginationDetails.set(response);
     });
+  }
+
+  addUserPage() {
+    this.router.navigate(['/admin/users/add']);
   }
 
   ngOnDestroy(): void {
