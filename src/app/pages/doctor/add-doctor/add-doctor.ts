@@ -38,7 +38,7 @@ export class AddDoctor {
     });
   }
 
-  submitUser(): void {
+  submitForm(): void {
     if (this.isSubmitting) return;
     if (this.doctorForm.invalid) {
       this.doctorForm.markAllAsDirty();
