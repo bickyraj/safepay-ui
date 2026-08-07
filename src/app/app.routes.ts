@@ -3,8 +3,8 @@ import { canActivateAuthRole } from './guards/auth/auth-guard';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { FrontendRoleEnum } from './utils/FrontendRoleEnum';
 import { ErrorLayoutComponent } from './layout/error-layout/error-layout.component';
-import { ForbiddenComponent } from './forbidden/forbidden.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { ForbiddenComponent } from './errorpage/forbidden/forbidden.component';
+import { NotFoundComponent } from './errorpage/not-found/not-found.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { LandingLayoutComponent } from './layout/landing-layout/landing-layout.component';
 import { LandingPage } from './pages/landing-page/landing-page';
@@ -31,12 +31,17 @@ import {
 } from './pages/hospital/admin/patient-case/hospital-patient-case-detail-component/hospital-patient-case-detail-component';
 import {Adduser} from './pages/user/adduser/adduser';
 import {AddDoctor} from './pages/doctor/add-doctor/add-doctor';
+import {landingPageGuardGuard} from './guards/landingpage/landing-page-guard-guard';
 
 export const routes: Routes = [
   // Public landing page
   {
     path: '',
     component: LandingLayoutComponent,
+    canActivate: [landingPageGuardGuard],
+    data: {
+      name: 'landing-page'
+    },
     children: [
       { path: '', component: LandingPage }
     ]

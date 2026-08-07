@@ -13,6 +13,10 @@ export class AuthService {
     this.tokenParsed = this._keycloak.tokenParsed as KeycloakTokenParsed;
   }
 
+  public isLoggedIn(): boolean {
+    return this._keycloak.authenticated;
+  }
+
   public getUserName(): string {
     if (this.tokenParsed) {
       return this.tokenParsed['given_name'];

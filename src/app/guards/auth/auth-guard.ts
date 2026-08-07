@@ -8,7 +8,7 @@ const authGuard = async (
   _: RouterStateSnapshot,
   authData: AuthGuardData
 ): Promise<boolean | UrlTree> => {
-  const router = inject(Router); // ✅ moved to top, before any use
+  const router = inject(Router);
 
   const { authenticated, grantedRoles, keycloak } = authData;
 
