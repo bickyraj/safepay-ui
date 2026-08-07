@@ -7,6 +7,12 @@
         Select a module to manage hospital resources.
       </p>
     </div>
+    <button
+      (click)="addHospital()"
+      class="inline-flex h-9 items-center gap-2 rounded bg-gradient-to-r bg-blue-600 px-3.5 text-sm font-semibold text-white transition hover:opacity-90"
+    >
+      <span>+ Add New Hospital</span>
+    </button>
   </div>
   <app-mx-table
     [columns]="columns"

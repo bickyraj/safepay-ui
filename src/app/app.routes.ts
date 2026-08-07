@@ -32,6 +32,7 @@ import {
 import {Adduser} from './pages/user/adduser/adduser';
 import {AddDoctor} from './pages/doctor/add-doctor/add-doctor';
 import {landingPageGuardGuard} from './guards/landingpage/landing-page-guard-guard';
+import {AddHospital} from './pages/hospital/add-hospital/add-hospital';
 
 export const routes: Routes = [
   {
@@ -217,8 +218,17 @@ export const routes: Routes = [
             component: Hospital,
             canActivate: [canActivateAuthRole],
             data: {
-              roles: [FrontendRoleEnum.USER, FrontendRoleEnum.SUPERADMIN],
+              roles: [FrontendRoleEnum.SUPERADMIN],
               breadcrumb: ''
+            }
+          },
+          {
+            path: 'add',
+            component: AddHospital,
+            canActivate: [canActivateAuthRole],
+            data: {
+              roles: [FrontendRoleEnum.SUPERADMIN],
+              breadcrumb: 'Add Hospital'
             }
           },
           {

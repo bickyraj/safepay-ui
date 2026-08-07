@@ -1,11 +1,17 @@
 import {inject, Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {map, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {ApiPaginatedResponseDTO} from '../../common/dto/ApiPaginatedResponseDTO';
 import {HospitalModel} from '../../model/HospitalModel';
 import {ApiResponseDTO} from '../../common/dto/ApiResponseDTO';
 import {UserModel} from '../../model/UserModel';
 import { environment } from '../../../environments/environment';
+
+export interface CreateHospitalDTO {
+  name: string;
+  address?: string;
+  phone?: string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -37,5 +43,12 @@ export class HospitalService {
   public addUsersToHospital(hospitalId: number, userIds: number[], role: string): Observable<boolean> {
     const url = new URL(`${this.apiUrl}/hospital/` + hospitalId + "/staffs/add");
     return this.httpClient.post<boolean>(url.toString(), { userIds, role });
+  }
+
+  public createHospital(createHospitalDTO: CreateHospitalDTO): Observable<boolean> {
+    const url = new URL(`${this.apiUrl}/hospital/create`);
+    return this.httpClient.post<ApiResponseDTO<[]>>(url.toString(), createHospitalDTO).pipe(
+      map(response => response.status || false)
+    );
   }
 }

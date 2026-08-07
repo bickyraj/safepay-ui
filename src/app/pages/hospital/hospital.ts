@@ -2,8 +2,7 @@ import {Component, inject, OnDestroy, OnInit, signal} from '@angular/core';
 import {HospitalService} from "../../services/hospital/hospital.service";
 import {MxTableComponent, PaginationDetails} from "../../common/mx-table/mx-table.component";
 import {HospitalModel} from "../../model/HospitalModel";
-import {Observable, of, Subject, takeUntil} from "rxjs";
-import {AsyncPipe} from "@angular/common";
+import {Subject} from "rxjs";
 import {Router} from '@angular/router';
 
 @Component({
@@ -46,6 +45,10 @@ export class Hospital implements OnInit, OnDestroy {
     if (typeof id === "number") {
       this.router.navigate(['/admin/hospitals', id]);
     }
+  }
+
+  public addHospital(): void {
+    this.router.navigate(['/admin/hospitals/add']);
   }
 
   ngOnDestroy(): void {
