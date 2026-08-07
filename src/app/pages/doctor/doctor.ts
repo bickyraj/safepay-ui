@@ -3,6 +3,7 @@ import {MxTableComponent, PaginationDetails} from '../../common/mx-table/mx-tabl
 import {Subject} from 'rxjs';
 import {DoctorModel} from '../../model/DoctorModel';
 import {DoctorService} from '../../services/doctor/doctor.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-doctor',
@@ -18,6 +19,7 @@ export class Doctor implements OnInit, OnDestroy {
   private readonly  doctorService = inject(DoctorService);
   public readonly columns: (keyof Partial<DoctorModel>)[] = ['id', 'name'];
   public dataList = signal<DoctorModel[]>([]);
+  private readonly router = inject(Router);
   public paginationDetails = signal<PaginationDetails>({
     pageNumber: 1,
     pageSize: 10,
@@ -37,6 +39,10 @@ export class Doctor implements OnInit, OnDestroy {
       this.dataList.set(response.content);
       this.paginationDetails.set(response);
     });
+  }
+
+  addDoctor() {
+    this.router.navigate(['/admin/doctors/add']);
   }
 
   ngOnDestroy(): void {
