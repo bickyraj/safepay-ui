@@ -34,7 +34,6 @@ import {AddDoctor} from './pages/doctor/add-doctor/add-doctor';
 import {landingPageGuardGuard} from './guards/landingpage/landing-page-guard-guard';
 
 export const routes: Routes = [
-  // Public landing page
   {
     path: '',
     component: LandingLayoutComponent,

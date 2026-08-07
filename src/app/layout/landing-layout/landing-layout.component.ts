@@ -56,7 +56,7 @@ export class LandingLayoutComponent implements AfterViewInit {
 
   public login(): void {
     this._keycloak.login({
-      redirectUri: window.location.origin + '/dashboard'
+      redirectUri: window.location.origin
     });
   }
 }
