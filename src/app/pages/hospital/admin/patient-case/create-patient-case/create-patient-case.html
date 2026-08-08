@@ -58,8 +58,8 @@
         </div>
       </div>
     </div>
-    @if(showFileError() && caseFiles().length < 1) {
-      <div class="text-red-500 text-sm mt-2">Please add some files.</div>
+    @if(showFileError()) {
+      <div class="text-red-500 text-sm mt-2">{{ fileErrorMessage }}</div>
     }
 
     <!-- Submit Button -->

@@ -1,6 +1,6 @@
 import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import { PatientCaseService } from '../../../../../services/patient-case/patient-case.service';
-import { DecimalPipe } from '@angular/common';
+import JSZip from 'jszip';
 import {firstValueFrom} from 'rxjs';
 import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -14,6 +14,11 @@ export interface CaseFile {
   name: string;
   size: number;
   progress: WritableSignal<number>;
+}
+
+enum FileErrorMessage {
+  EXT = 'File type is not supported. Only ZIP and DICOM files are allowed.',
+  REQUIRED = 'Please add some files.',
 }
 
 @Component({
@@ -31,6 +36,7 @@ export class CreatePatientCase {
   showFileError = signal<boolean>(false);
   patientCaseForm: FormGroup;
   private eventService = inject(EventService);
+  public fileErrorMessage: string = "";
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute) {
     this.patientCaseForm = new FormGroup({
@@ -39,20 +45,87 @@ export class CreatePatientCase {
     });
   }
 
-  onFilesSelected(event: Event): void {
+  async onFilesSelected(event: Event): Promise<void> {
     const input = event.target as HTMLInputElement;
     if (!input.files || input.files.length === 0) return;
 
-    const newCaseFiles: CaseFile[] = Array.from(input.files).map(file => ({
-      id: crypto.randomUUID(),
-      file,
-      name: file.name,
-      size: file.size,
-      progress: signal(0)
-    }));
+    const allowedExtensions = ['zip', 'dcm'];
+
+    const newCaseFiles: CaseFile[] = [];
+    const invalidFiles: string[] = [];
+
+    for (const file of Array.from(input.files)) {
+
+      const extension = file.name
+        .split('.')
+        .pop()
+        ?.toLowerCase();
+
+      // 1. ext validation.
+      if (!extension || !allowedExtensions.includes(extension)) {
+        invalidFiles.push(file.name);
+        break;
+      }
+
+      // 2. zip validation
+      if (extension === 'zip') {
+        const isValidZip = await this.checkZipFile(file);
+        if (!isValidZip) {
+          invalidFiles.push(`${file.name} (invalid ZIP)`);
+          break;
+        }
+      }
+
+      newCaseFiles.push({
+        id: crypto.randomUUID(),
+        file,
+        name: file.name,
+        size: file.size,
+        progress: signal(0)
+      });
+    }
+
+    if (invalidFiles.length > 0) {
+      this.showFileError.set(true);
+      this.fileErrorMessage = `Unsupported or invalid files: ${invalidFiles.join(', ')}`;
+      setTimeout(() => {
+        this.showFileError.set(false);
+      }, 3000)
+      return;
+    }
 
     this.caseFiles.update(list => [...list, ...newCaseFiles]);
+
     input.value = '';
+  }
+
+  private async checkZipFile(file: File): Promise<boolean> {
+    try {
+      const zip = await JSZip.loadAsync(file);
+
+      const entries = Object.values(zip.files)
+        .filter(entry => !entry.dir)
+        .filter(entry => !entry.name.startsWith('__MACOSX/'));
+
+      // ZIP must contain at least one file
+      if (entries.length === 0) {
+        return false;
+      }
+
+      // Check every file inside the ZIP
+      for (const entry of entries) {
+        const extension = entry.name
+          .split('.')
+          .pop()
+          ?.toLowerCase();
+        if (extension !== 'dcm') {
+          return false;
+        }
+      }
+      return true;
+    } catch (error) {
+      return false;
+    }
   }
 
   removeFile(id: string): void {
@@ -70,8 +143,9 @@ export class CreatePatientCase {
       showErrors = true;
     }
     if (this.caseFiles().length < 1) {
-      this.showFileError.set(true);
       showErrors = true;
+      this.fileErrorMessage = FileErrorMessage.REQUIRED;
+      this.showFileError.set(true);
     }
     if (showErrors || this.submitted) return;
 
