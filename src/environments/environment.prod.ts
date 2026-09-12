@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
   apiUrl: 'https://candyhms.duckdns.org/api',
-  keycloakUrl: 'https://candyhms.duckdns.org/auth'
+  keycloakUrl: 'https://candyhms.duckdns.org/auth',
+  ohifUrl: 'https://candyhms.duckdns.org/ohif'
 };

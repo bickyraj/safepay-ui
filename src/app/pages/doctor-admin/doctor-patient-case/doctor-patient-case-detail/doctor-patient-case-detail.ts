@@ -34,6 +34,7 @@ export class DoctorPatientCaseDetail implements OnInit {
   private isSubmitting: boolean = false;
   public selectedGroupKey = signal<string | null>(null);
   private apiUrl = environment.apiUrl;
+  private ohifUrl = environment.ohifUrl;
 
   public reportForm: FormGroup;
 
@@ -181,6 +182,6 @@ export class DoctorPatientCaseDetail implements OnInit {
   );
 
   public openOhif() {
-    window.open('http://localhost:3000/viewer?StudyInstanceUIDs=1.2.840.113619.6.44.9791300399257205911503084213720835478', '_blank')
+    window.open(`${this.ohifUrl}/viewer?StudyInstanceUIDs=1.2.840.113619.6.44.9791300399257205911503084213720835478`, '_blank')
   }
 }
