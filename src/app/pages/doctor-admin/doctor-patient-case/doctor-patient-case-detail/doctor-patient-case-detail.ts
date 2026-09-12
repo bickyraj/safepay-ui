@@ -8,8 +8,6 @@ import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, V
 import {ActivatedRoute} from '@angular/router';
 import {firstValueFrom} from 'rxjs';
 import {AssignmentRole} from '../../../admin/patient-case/patient-case-detail/admin-patient-case-detail.component';
-import {DicomViewerWrapper} from '../../../../common/diacom-viewer-wrapper/diacom-viewer-wrapper';
-import {KeyValuePipe} from '@angular/common';
 import {environment} from '../../../../../environments/environment';
 
 @Component({
@@ -17,8 +15,6 @@ import {environment} from '../../../../../environments/environment';
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    DicomViewerWrapper,
-    KeyValuePipe
   ],
   templateUrl: './doctor-patient-case-detail.html',
   styleUrl: './doctor-patient-case-detail.scss',
@@ -184,4 +180,7 @@ export class DoctorPatientCaseDetail implements OnInit {
     this.patientCase()?.name?.trim().charAt(0).toUpperCase() ?? ''
   );
 
+  public openOhif() {
+    window.open('http://localhost:3000/viewer?StudyInstanceUIDs=1.2.840.113619.6.44.9791300399257205911503084213720835478', '_blank')
+  }
 }
